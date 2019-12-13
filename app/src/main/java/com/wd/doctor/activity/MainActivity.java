@@ -50,7 +50,7 @@ public class MainActivity extends BaseActivity<Presenter> {
                         Message message = handler.obtainMessage(1);
                         handler.sendMessageDelayed(message,1000);
                     }else{
-                        Intent intent = new Intent(MainActivity.this, ShowActivity.class);
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
                         startActivity(intent);
                         finish();
                     }
