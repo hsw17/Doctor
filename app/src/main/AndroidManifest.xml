@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name="com.wd.mvplibrary.app.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="维度健康---医生端"
@@ -15,7 +16,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.Register3Activity"></activity>
+        <activity android:name=".activity.ManageActivity"></activity>
+        <activity android:name=".activity.FindSickCircleInfoActivity" />
+        <activity android:name=".activity.FindActivity" />
+        <activity android:name=".activity.AnswerActivity" />
+        <activity android:name=".activity.Register3Activity" />
         <activity android:name=".activity.Register2Activity" />
         <activity android:name=".activity.Register1Activity" />
         <activity android:name=".activity.ForgetActivity" />

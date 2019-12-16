@@ -2,13 +2,20 @@ package com.wd.doctor.model;
 
 import com.wd.doctor.bean.ApplyJoinBean;
 import com.wd.doctor.bean.FindDepartmentBean;
+import com.wd.doctor.bean.FindDoctorByIdBean;
 import com.wd.doctor.bean.FindJobTitleListBean;
+import com.wd.doctor.bean.FindSickCircleInfoBean;
+import com.wd.doctor.bean.FindSickCircleListBean;
+import com.wd.doctor.bean.FindSystemImagePicBean;
 import com.wd.doctor.bean.LoginBean;
+import com.wd.doctor.bean.SearchSickCircleBean;
 import com.wd.doctor.bean.SendEmailCodeBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.util.HttpUtil;
 import com.wd.mvplibrary.utils.CommonObserver;
 import com.wd.mvplibrary.utils.CommonSchedulers;
+
+import io.reactivex.internal.observers.BlockingBaseObserver;
 
 /**
  * describe:IModel
@@ -94,6 +101,91 @@ public class IModel implements Contract.IModel {
                     @Override
                     public void onNext(ApplyJoinBean applyJoinBean) {
                         iModelCallback.onSuccess(applyJoinBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void doFindSystem(IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doFindSystem()
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<FindSystemImagePicBean>() {
+                    @Override
+                    public void onNext(FindSystemImagePicBean findSystemImagePicBean) {
+                        iModelCallback.onSuccessOne(findSystemImagePicBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void doFindSickCircle(String departmentId,String page,String count, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doFindSickCircle(departmentId,page,count)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<FindSickCircleListBean>() {
+                    @Override
+                    public void onNext(FindSickCircleListBean findSickCircleListBean) {
+                        iModelCallback.onSuccess(findSickCircleListBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void doSearchSickCircle(String keyWord, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doSearchSickCircle(keyWord)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<SearchSickCircleBean>() {
+                    @Override
+                    public void onNext(SearchSickCircleBean searchSickCircleBean) {
+                        iModelCallback.onSuccess(searchSickCircleBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void doFindSickInfo(String doctorId, String sessionId, String sickCircleId, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doFindSickInfo(doctorId,sessionId,sickCircleId)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new BlockingBaseObserver<FindSickCircleInfoBean>() {
+                    @Override
+                    public void onNext(FindSickCircleInfoBean findSickCircleInfoBean) {
+                        iModelCallback.onSuccess(findSickCircleInfoBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void doFindDoctorById(String doctorId, String sessionId, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doFindDoctorById(doctorId,sessionId)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new BlockingBaseObserver<FindDoctorByIdBean>() {
+                    @Override
+                    public void onNext(FindDoctorByIdBean findDoctorByIdBean) {
+                        iModelCallback.onSuccess(findDoctorByIdBean);
                     }
 
                     @Override

@@ -18,7 +18,7 @@ public class FindSystemImagePicBean {
 
     private String message;
     private String status;
-    private List<ResultBean> result;
+    private ResultBean result;
 
     public String getMessage() {
         return message;
@@ -36,11 +36,11 @@ public class FindSystemImagePicBean {
         this.status = status;
     }
 
-    public List<ResultBean> getResult() {
+    public ResultBean getResult() {
         return result;
     }
 
-    public void setResult(List<ResultBean> result) {
+    public void setResult(ResultBean result) {
         this.result = result;
     }
 

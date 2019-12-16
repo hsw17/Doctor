@@ -62,6 +62,15 @@ public class FindDoctorByIdBean {
         private String jobTitle;
         private String name;
         private String personalProfile;
+        private String imagePic;
+
+        public String getImagePic() {
+            return imagePic;
+        }
+
+        public void setImagePic(String imagePic) {
+            this.imagePic = imagePic;
+        }
 
         public int getDepartmentId() {
             return departmentId;

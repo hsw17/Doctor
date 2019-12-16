@@ -14,6 +14,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.wd.doctor.R;
+import com.wd.doctor.bean.FindSystemImagePicBean;
 import com.wd.doctor.bean.LoginBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
@@ -40,6 +41,7 @@ public class LoginActivity extends BaseActivity<Presenter> implements Contract.I
     EditText etPwdLogin;
     @BindView(R.id.tg_btn_eye)
     ToggleButton tgBtnEye;
+    private FindSystemImagePicBean.ResultBean resultBean;
 
     @Override
     protected Presenter providePresenter() {
@@ -136,7 +138,7 @@ public class LoginActivity extends BaseActivity<Presenter> implements Contract.I
         LoginBean loginBean = (LoginBean) obj;
         Logger.e(TAG,loginBean.getMessage());
         SPUtils user = new SPUtils(this, "user");
-        user.SharedPreferenceput("doctorId",loginBean.getResult().getId());
+        user.SharedPreferenceput("doctorId",loginBean.getResult().getId()+"");
         user.SharedPreferenceput("sessionId",loginBean.getResult().getSessionId());
         SPUtils remember = new SPUtils(this, "remember");
         remember.SharedPreferenceput("email",etEmailLogin.getText().toString());
@@ -144,9 +146,18 @@ public class LoginActivity extends BaseActivity<Presenter> implements Contract.I
         if ("0000".equals(loginBean.getStatus())) {
             ToastUtils.show(loginBean.getMessage());
             Intent intent = new Intent(this, ShowActivity.class);
-            HashMap<String, String> map = new HashMap<>();
-            map.put("name",loginBean.getResult().getName());
-            EventBusUtils.postSticky(map);
+            intent.putExtra("name",loginBean.getResult().getName());
+            intent.putExtra("inauguralHospital",loginBean.getResult().getInauguralHospital());
+            intent.putExtra("jobTitle",loginBean.getResult().getJobTitle());
+            intent.putExtra("departmentName",loginBean.getResult().getDepartmentName());
+            int whetherHaveImagePic = loginBean.getResult().getWhetherHaveImagePic();
+            if (whetherHaveImagePic==1) {
+                intent.putExtra("imagePic",loginBean.getResult().getImagePic());
+            }else if (whetherHaveImagePic==2){
+                presenter.doFindSystem();
+                intent.putExtra("imagePic",resultBean.getImagePic());
+            }
+            startActivity(intent);
         }else {
             ToastUtils.show(loginBean.getMessage());
         }
@@ -154,7 +165,9 @@ public class LoginActivity extends BaseActivity<Presenter> implements Contract.I
 
     @Override
     public void onSuccessOne(Object one) {
-
+        FindSystemImagePicBean findSystemImagePicBean = (FindSystemImagePicBean) one;
+        Logger.e(TAG,findSystemImagePicBean.getMessage());
+        resultBean = findSystemImagePicBean.getResult();
     }
 
     @Override
