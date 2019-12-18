@@ -110,7 +110,10 @@ public class FindActivity extends BaseActivity<Presenter> implements Contract.IV
         result = searchSickCircleBean.getResult();
         if (result.size()==0) {
             imgNoneFind.setImageResource(R.mipmap.no_search_message);
+            recSearchSickCircleView.setVisibility(View.GONE);
+            imgNoneFind.setVisibility(View.VISIBLE);
         }else {
+            recSearchSickCircleView.setVisibility(View.VISIBLE);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
             recSearchSickCircleView.setLayoutManager(linearLayoutManager);
             myRecViewSearchSickCircleAdapter = new MyRecViewSearchSickCircleAdapter(result,this);

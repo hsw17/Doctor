@@ -53,12 +53,6 @@ public class FindSickCircleInfoActivity extends BaseActivity<Presenter> implemen
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        onCreate(null);
-    }
-
-    @Override
     protected void initData() {
         super.initData();
         SPUtils user = new SPUtils(this, "user");
