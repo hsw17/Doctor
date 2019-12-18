@@ -1,6 +1,9 @@
 package com.wd.doctor.model;
 
 import com.wd.doctor.bean.ApplyJoinBean;
+import com.wd.doctor.bean.BindDoctorBankCardBean;
+import com.wd.doctor.bean.CheckCodeBean;
+import com.wd.doctor.bean.ChooseImagePicBean;
 import com.wd.doctor.bean.FindDepartmentBean;
 import com.wd.doctor.bean.FindDoctorByIdBean;
 import com.wd.doctor.bean.FindJobTitleListBean;
@@ -8,6 +11,8 @@ import com.wd.doctor.bean.FindSickCircleInfoBean;
 import com.wd.doctor.bean.FindSickCircleListBean;
 import com.wd.doctor.bean.FindSystemImagePicBean;
 import com.wd.doctor.bean.LoginBean;
+import com.wd.doctor.bean.PublishCommentBean;
+import com.wd.doctor.bean.ResetUserPwdBean;
 import com.wd.doctor.bean.SearchSickCircleBean;
 import com.wd.doctor.bean.SendEmailCodeBean;
 import com.wd.doctor.contract.Contract;
@@ -95,7 +100,7 @@ public class IModel implements Contract.IModel {
 
     @Override
     public void doApplyJoin(String email, String code, String pwd1, String pwd2, String name, String inauguralHospital, String departmentName, String jobTitle, String personalProfile, String goodField, IModelCallback iModelCallback) {
-        HttpUtil.getInstance().getApiServer().doApplyJoin(email,code,pwd1,pwd2,name,inauguralHospital,departmentName,jobTitle,personalProfile,goodField)
+        HttpUtil.getInstance().getApiServer().doApplyJoin()
                 .compose(CommonSchedulers.io2main())
                 .subscribe(new CommonObserver<ApplyJoinBean>() {
                     @Override
@@ -165,7 +170,7 @@ public class IModel implements Contract.IModel {
     public void doFindSickInfo(String doctorId, String sessionId, String sickCircleId, IModelCallback iModelCallback) {
         HttpUtil.getInstance().getApiServer().doFindSickInfo(doctorId,sessionId,sickCircleId)
                 .compose(CommonSchedulers.io2main())
-                .subscribe(new BlockingBaseObserver<FindSickCircleInfoBean>() {
+                .subscribe(new CommonObserver<FindSickCircleInfoBean>() {
                     @Override
                     public void onNext(FindSickCircleInfoBean findSickCircleInfoBean) {
                         iModelCallback.onSuccess(findSickCircleInfoBean);
@@ -182,10 +187,95 @@ public class IModel implements Contract.IModel {
     public void doFindDoctorById(String doctorId, String sessionId, IModelCallback iModelCallback) {
         HttpUtil.getInstance().getApiServer().doFindDoctorById(doctorId,sessionId)
                 .compose(CommonSchedulers.io2main())
-                .subscribe(new BlockingBaseObserver<FindDoctorByIdBean>() {
+                .subscribe(new CommonObserver<FindDoctorByIdBean>() {
                     @Override
                     public void onNext(FindDoctorByIdBean findDoctorByIdBean) {
                         iModelCallback.onSuccess(findDoctorByIdBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void doChooseImagePic(String doctorId, String sessionId, String imagePic, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doChooseImagePic(doctorId,sessionId,imagePic)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<ChooseImagePicBean>() {
+                    @Override
+                    public void onNext(ChooseImagePicBean chooseImagePicBean) {
+                        iModelCallback.onSuccess(chooseImagePicBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void doPublishComment(String doctorId, String sessionId, String sickCircleId, String content, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doPublishComment(doctorId,sessionId,sickCircleId,content)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<PublishCommentBean>() {
+                    @Override
+                    public void onNext(PublishCommentBean publishCommentBean) {
+                        iModelCallback.onSuccessOne(publishCommentBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void doCheckCode(String email, String code, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doCheckCode(email,code)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<CheckCodeBean>() {
+                    @Override
+                    public void onNext(CheckCodeBean checkCodeBean) {
+                        iModelCallback.onSuccessOne(checkCodeBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void doResetUserPwd(String email, String pwd1, String pwd2, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doResetUserPwd(email,pwd1,pwd2)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<ResetUserPwdBean>() {
+                    @Override
+                    public void onNext(ResetUserPwdBean resetUserPwdBean) {
+                        iModelCallback.onSuccessTwo(resetUserPwdBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void doBindDoctorBandCard(String doctorId, String sessionId, String bankCardNumber, String bankName, String bankCardType, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doBindDoctorBandCard(doctorId,sessionId,bankCardNumber,bankName,bankCardType)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<BindDoctorBankCardBean>() {
+                    @Override
+                    public void onNext(BindDoctorBankCardBean bindDoctorBankCardBean) {
+                        iModelCallback.onSuccess(bindDoctorBankCardBean);
                     }
 
                     @Override

@@ -59,4 +59,5 @@ dependencies {
 //EventBus依赖
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation project(path: ':mvplibrary')
+
 }

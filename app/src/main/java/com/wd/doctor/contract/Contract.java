@@ -41,6 +41,16 @@ public interface Contract {
         void doFindSickInfo(String doctorId,String sessionId,String sickCircleId);
         //根据医生id查询医生信息
         void doFindDoctorById(String doctorId,String sessionId);
+        //选择系统提供形象照
+        void doChooseImagePic(String doctorId,String sessionId,String imagePic);
+        //发表评论
+        void doPublishComment(String doctorId,String sessionId,String sickCircleId,String content);
+        //校验验证码
+        void doCheckCode(String email,String code);
+        //重置用户密码（忘记密码用）
+        void doResetUserPwd(String email,String pwd1,String pwd2);
+        //绑定银行卡
+        void doBindDoctorBandCard(String doctorId,String sessionId,String bankCardNumber,String bankName,String bankCardType);
     }
 
     //M层
@@ -55,6 +65,11 @@ public interface Contract {
         void doSearchSickCircle(String keyWord,IModelCallback iModelCallback);
         void doFindSickInfo(String doctorId,String sessionId,String sickCircleId,IModelCallback iModelCallback);
         void doFindDoctorById(String doctorId,String sessionId,IModelCallback iModelCallback);
+        void doChooseImagePic(String doctorId,String sessionId,String imagePic,IModelCallback iModelCallback);
+        void doPublishComment(String doctorId,String sessionId,String sickCircleId,String content,IModelCallback iModelCallback);
+        void doCheckCode(String email,String code,IModelCallback iModelCallback);
+        void doResetUserPwd(String email,String pwd1,String pwd2,IModelCallback iModelCallback);
+        void doBindDoctorBandCard(String doctorId,String sessionId,String bankCardNumber,String bankName,String bankCardType,IModelCallback iModelCallback);
         interface IModelCallback{
             void onSuccess(Object obj);
             void onSuccessOne(Object one);

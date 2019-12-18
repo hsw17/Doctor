@@ -27,6 +27,7 @@ import com.wd.mvplibrary.utils.SPUtils;
 import com.wd.mvplibrary.utils.ToastUtils;
 
 import java.util.HashMap;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -41,7 +42,7 @@ public class LoginActivity extends BaseActivity<Presenter> implements Contract.I
     EditText etPwdLogin;
     @BindView(R.id.tg_btn_eye)
     ToggleButton tgBtnEye;
-    private FindSystemImagePicBean.ResultBean resultBean;
+    private List<FindSystemImagePicBean.ResultBean> resultBean;
 
     @Override
     protected Presenter providePresenter() {
@@ -155,7 +156,7 @@ public class LoginActivity extends BaseActivity<Presenter> implements Contract.I
                 intent.putExtra("imagePic",loginBean.getResult().getImagePic());
             }else if (whetherHaveImagePic==2){
                 presenter.doFindSystem();
-                intent.putExtra("imagePic",resultBean.getImagePic());
+                intent.putExtra("imagePic",resultBean.get(1).getImagePic());
             }
             startActivity(intent);
         }else {

@@ -16,6 +16,7 @@ import com.wd.doctor.R;
 import com.wd.doctor.bean.SendEmailCodeBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
+import com.wd.doctor.util.RsaCoder;
 import com.wd.mvplibrary.base.BaseActivity;
 import com.wd.mvplibrary.utils.EventBusUtils;
 import com.wd.mvplibrary.utils.Logger;
@@ -236,6 +237,16 @@ public class RegisterActivity extends BaseActivity<Presenter> implements Contrac
         String code = etCodeRegister.getText().toString();
         String pwd = etPwdRegister.getText().toString();
         String pwd1 = etPwd1Register.getText().toString();
+        try {
+            pwd = RsaCoder.encryptByPublicKey(pwd);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            pwd1 = RsaCoder.encryptByPublicKey(pwd1);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         switch (view.getId()) {
             case R.id.btn_code_register:
                 presenter.doSendEmail(email);
@@ -243,12 +254,11 @@ public class RegisterActivity extends BaseActivity<Presenter> implements Contrac
             case R.id.btn_next_register:
                 if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(code) && !TextUtils.isEmpty(pwd) && !TextUtils.isEmpty(pwd1)) {
                     Intent intent = new Intent(this, Register1Activity.class);
-                    HashMap<String,String> map = new HashMap<>();
-                    map.put("email_register",email);
-                    map.put("code_register",code);
-                    map.put("pwd_register",pwd);
-                    map.put("pwd1_register",pwd1);
-                    EventBusUtils.postSticky(map);
+                    SPUtils reg = new SPUtils(this, "reg");
+                    reg.SharedPreferenceput("email",email);
+                    reg.SharedPreferenceput("code",code);
+                    reg.SharedPreferenceput("pwd",pwd);
+                    reg.SharedPreferenceput("pwd1",pwd1);
                     startActivity(intent);
                 }else {
                     ToastUtils.show("这些选项为必选,不能不答");

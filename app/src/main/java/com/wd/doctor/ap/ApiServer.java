@@ -1,6 +1,9 @@
 package com.wd.doctor.ap;
 
 import com.wd.doctor.bean.ApplyJoinBean;
+import com.wd.doctor.bean.BindDoctorBankCardBean;
+import com.wd.doctor.bean.CheckCodeBean;
+import com.wd.doctor.bean.ChooseImagePicBean;
 import com.wd.doctor.bean.FindDepartmentBean;
 import com.wd.doctor.bean.FindDoctorByIdBean;
 import com.wd.doctor.bean.FindJobTitleListBean;
@@ -8,6 +11,8 @@ import com.wd.doctor.bean.FindSickCircleInfoBean;
 import com.wd.doctor.bean.FindSickCircleListBean;
 import com.wd.doctor.bean.FindSystemImagePicBean;
 import com.wd.doctor.bean.LoginBean;
+import com.wd.doctor.bean.PublishCommentBean;
+import com.wd.doctor.bean.ResetUserPwdBean;
 import com.wd.doctor.bean.SearchSickCircleBean;
 import com.wd.doctor.bean.SendEmailCodeBean;
 
@@ -17,6 +22,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Query;
 
@@ -37,9 +43,7 @@ public interface ApiServer {
     @GET("doctor/v1/findJobTitleList")
     Observable<FindJobTitleListBean> doFindJobTitle();
     @POST("doctor/v1/applyJoin")
-    Observable<ApplyJoinBean> doApplyJoin(@Part("email") String email,@Part("code") String code,@Part("pwd1") String pwd1,@Part("pwd2") String pwd2,@Part("name") String name,
-            @Part("inauguralHospital") String inauguralHospital,@Part("departmentName") String departmentName,@Part("jobTitle") String jobTitle,@Part("personalProfile") String personalProfile,
-            @Part("goodField") String goodField);
+    Observable<ApplyJoinBean> doApplyJoin();
     @GET("doctor/v1/findSystemImagePic")
     Observable<FindSystemImagePicBean> doFindSystem();
     @GET("doctor/sickCircle/v1/findSickCircleList")
@@ -50,4 +54,14 @@ public interface ApiServer {
     Observable<FindSickCircleInfoBean> doFindSickInfo(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId,@Query("sickCircleId") String sickCircleId);
     @GET("doctor/verify/v1/findDoctorById")
     Observable<FindDoctorByIdBean> doFindDoctorById(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId);
+    @POST("doctor/verify/v1/chooseImagePic")
+    Observable<ChooseImagePicBean> doChooseImagePic(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId,@Query("imagePic") String imagePic);
+    @POST("doctor/sickCircle/verify/v1/publishComment")
+    Observable<PublishCommentBean> doPublishComment(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId,@Query("sickCircleId") String sickCircleId,@Query("content") String content);
+    @POST("doctor/v1/checkCode")
+    Observable<CheckCodeBean> doCheckCode(@Query("email") String email,@Query("code") String code);
+    @PUT("doctor/v1/resetUserPwd")
+    Observable<ResetUserPwdBean> doResetUserPwd(@Query("email") String email,@Query("pwd1") String pwd1,@Query("pwd2") String pwd2);
+    @POST("doctor/verify/v1/bindDoctorBankCard")
+    Observable<BindDoctorBankCardBean> doBindDoctorBandCard(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId,@Query("bankCardNumber") String bankCardNumber,@Query("bankName") String bankName,@Query("bankCardType") String bankCardType);
 }

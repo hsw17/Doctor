@@ -3,6 +3,7 @@ package com.wd.doctor.presenter;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.model.IModel;
 import com.wd.mvplibrary.base.BasePresenter;
+import com.wd.mvplibrary.utils.Logger;
 
 /**
  * describe:Presenter
@@ -225,6 +226,7 @@ public class Presenter extends BasePresenter<Contract.IView> implements Contract
             @Override
             public void onFail(String str) {
                 getView().onFail(str);
+                Logger.e("aaa",str);
             }
         });
     }
@@ -337,6 +339,181 @@ public class Presenter extends BasePresenter<Contract.IView> implements Contract
     @Override
     public void doFindDoctorById(String doctorId, String sessionId) {
         iModel.doFindDoctorById(doctorId, sessionId, new Contract.IModel.IModelCallback() {
+            @Override
+            public void onSuccess(Object obj) {
+                getView().onSuccess(obj);
+            }
+
+            @Override
+            public void onSuccessOne(Object one) {
+
+            }
+
+            @Override
+            public void onSuccessTwo(Object two) {
+
+            }
+
+            @Override
+            public void onSuccessThree(Object three) {
+
+            }
+
+            @Override
+            public void onSuccessFour(Object four) {
+
+            }
+
+            @Override
+            public void onFail(String str) {
+                getView().onFail(str);
+            }
+        });
+    }
+
+    @Override
+    public void doChooseImagePic(String doctorId, String sessionId, String imagePic) {
+        iModel.doChooseImagePic(doctorId, sessionId, imagePic, new Contract.IModel.IModelCallback() {
+            @Override
+            public void onSuccess(Object obj) {
+                getView().onSuccess(obj);
+            }
+
+            @Override
+            public void onSuccessOne(Object one) {
+
+            }
+
+            @Override
+            public void onSuccessTwo(Object two) {
+
+            }
+
+            @Override
+            public void onSuccessThree(Object three) {
+
+            }
+
+            @Override
+            public void onSuccessFour(Object four) {
+
+            }
+
+            @Override
+            public void onFail(String str) {
+                getView().onFail(str);
+            }
+        });
+    }
+
+    @Override
+    public void doPublishComment(String doctorId, String sessionId, String sickCircleId, String content) {
+        iModel.doPublishComment(doctorId, sessionId, sickCircleId, content, new Contract.IModel.IModelCallback() {
+            @Override
+            public void onSuccess(Object obj) {
+
+            }
+
+            @Override
+            public void onSuccessOne(Object one) {
+                getView().onSuccessOne(one);
+            }
+
+            @Override
+            public void onSuccessTwo(Object two) {
+
+            }
+
+            @Override
+            public void onSuccessThree(Object three) {
+
+            }
+
+            @Override
+            public void onSuccessFour(Object four) {
+
+            }
+
+            @Override
+            public void onFail(String str) {
+                getView().onFail(str);
+            }
+        });
+    }
+
+    @Override
+    public void doCheckCode(String email, String code) {
+        iModel.doCheckCode(email, code, new Contract.IModel.IModelCallback() {
+            @Override
+            public void onSuccess(Object obj) {
+
+            }
+
+            @Override
+            public void onSuccessOne(Object one) {
+                getView().onSuccessOne(one);
+            }
+
+            @Override
+            public void onSuccessTwo(Object two) {
+
+            }
+
+            @Override
+            public void onSuccessThree(Object three) {
+
+            }
+
+            @Override
+            public void onSuccessFour(Object four) {
+
+            }
+
+            @Override
+            public void onFail(String str) {
+                getView().onFail(str);
+            }
+        });
+    }
+
+    @Override
+    public void doResetUserPwd(String email, String pwd1, String pwd2) {
+        iModel.doResetUserPwd(email, pwd1, pwd2, new Contract.IModel.IModelCallback() {
+            @Override
+            public void onSuccess(Object obj) {
+
+            }
+
+            @Override
+            public void onSuccessOne(Object one) {
+
+            }
+
+            @Override
+            public void onSuccessTwo(Object two) {
+                getView().onSuccessTwo(two);
+            }
+
+            @Override
+            public void onSuccessThree(Object three) {
+
+            }
+
+            @Override
+            public void onSuccessFour(Object four) {
+
+            }
+
+            @Override
+            public void onFail(String str) {
+                getView().onFail(str);
+            }
+        });
+    }
+
+    @Override
+    public void doBindDoctorBandCard(String doctorId, String sessionId, String bankCardNumber, String bankName, String bankCardType) {
+        iModel.doBindDoctorBandCard(doctorId, sessionId, bankCardNumber, bankName, bankCardType, new Contract.IModel.IModelCallback() {
             @Override
             public void onSuccess(Object obj) {
                 getView().onSuccess(obj);

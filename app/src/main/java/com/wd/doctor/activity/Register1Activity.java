@@ -23,6 +23,7 @@ import com.wd.doctor.presenter.Presenter;
 import com.wd.mvplibrary.base.BaseActivity;
 import com.wd.mvplibrary.utils.EventBusUtils;
 import com.wd.mvplibrary.utils.Logger;
+import com.wd.mvplibrary.utils.SPUtils;
 import com.wd.mvplibrary.utils.ToastUtils;
 
 import org.greenrobot.eventbus.EventBus;
@@ -62,11 +63,6 @@ public class Register1Activity extends BaseActivity<Presenter> implements Contra
     @Override
     protected void initData() {
         super.initData();
-        ToastUtils.init(this);
-        String name = etNameRegister1.getText().toString();
-        String hospital = etInauguralHospitalRegister1.getText().toString();
-        String Department = etDepartmentNameRegister1.toString();
-        String jobTitle = etJobTitleRegister1.toString();
 
     }
 
@@ -116,10 +112,17 @@ public class Register1Activity extends BaseActivity<Presenter> implements Contra
             case R.id.btn_next_register1:
                 String name = etNameRegister1.getText().toString();
                 String hospital = etInauguralHospitalRegister1.getText().toString();
-                String department = etDepartmentNameRegister1.toString();
-                String jobTitle = etJobTitleRegister1.toString();
+                /*String department = etDepartmentNameRegister1.toString();
+                String jobTitle = etJobTitleRegister1.toString();*/
+                String department = "小儿科";
+                String jobTitle = "主任";
                 if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(hospital) && !TextUtils.isEmpty(department) && !TextUtils.isEmpty(jobTitle)) {
                     Intent intent = new Intent(this, Register2Activity.class);
+                    SPUtils reg = new SPUtils(this, "reg");
+                    reg.SharedPreferenceput("name",name);
+                    reg.SharedPreferenceput("hospital",hospital);
+                    reg.SharedPreferenceput("department",department);
+                    reg.SharedPreferenceput("jobTitle",jobTitle);
                     startActivity(intent);
                 }else {
                     ToastUtils.show("这些选项为必选,不能不答");

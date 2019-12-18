@@ -2,8 +2,12 @@ package com.wd.doctor.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -64,6 +68,39 @@ public class FindActivity extends BaseActivity<Presenter> implements Contract.IV
     protected void initData() {
         super.initData();
         ToastUtils.init(this);
+        etFind.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if (actionId == EditorInfo.IME_ACTION_SEND || (event!=null&&event.getKeyCode()== KeyEvent.KEYCODE_ENTER)) {
+                    return true;
+                }
+                return false;
+            }
+        });
+        etFind.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (s.toString().contains(" ")) {
+                    String[] str = s.toString().split(" ");
+                    String str1 = "";
+                    for (int i = 0; i < str.length; i++) {
+                        str1 += str[i];
+                    }
+                    etFind.setText(str1);
+                    etFind.setSelection(start);
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
     @Override

@@ -12,7 +12,13 @@ import com.wd.doctor.R;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
 import com.wd.mvplibrary.base.BaseActivity;
+import com.wd.mvplibrary.utils.Logger;
+import com.wd.mvplibrary.utils.SPUtils;
 import com.wd.mvplibrary.utils.ToastUtils;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,6 +26,7 @@ import butterknife.OnClick;
 
 public class Register2Activity extends BaseActivity<Presenter> implements Contract.IView {
 
+    public static final String TAG = "Register2Activity";
     @BindView(R.id.et_personalProfile_register2)
     EditText etPersonalProfileRegister2;
     @BindView(R.id.et_goodField_register2)
@@ -92,6 +99,8 @@ public class Register2Activity extends BaseActivity<Presenter> implements Contra
     @Override
     public void onSuccess(Object obj) {
 
+        //Intent intent = new Intent(this, Register3Activity.class);
+        //startActivity(intent);
     }
 
     @Override
@@ -128,8 +137,34 @@ public class Register2Activity extends BaseActivity<Presenter> implements Contra
                 String personal = etPersonalProfileRegister2.getText().toString();
                 String good = etGoodFieldRegister2.getText().toString();
                 if (!TextUtils.isEmpty(personal) && !TextUtils.isEmpty(good)) {
-                    Intent intent = new Intent(this, Register3Activity.class);
-                    startActivity(intent);
+                    SPUtils reg = new SPUtils(this, "reg");
+                    String email = (String) reg.getSharedPreference("email", "");
+                    String code = (String) reg.getSharedPreference("code", "");
+                    String pwd = (String) reg.getSharedPreference("pwd", "");
+                    String pwd1 = (String) reg.getSharedPreference("pwd1", "");
+                    String name = (String) reg.getSharedPreference("name", "");
+                    String hospital = (String) reg.getSharedPreference("hospital", "");
+                    String department = (String) reg.getSharedPreference("department", "");
+                    String jobTitle = (String) reg.getSharedPreference("jobTitle", "");
+                    JSONArray jsonArray = new JSONArray();
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+                        jsonObject.put("email",email);
+                        jsonObject.put("code",code);
+                        jsonObject.put("pwd",pwd);
+                        jsonObject.put("pwd1",pwd1);
+                        jsonObject.put("name",name);
+                        jsonObject.put("hospital",hospital);
+                        jsonObject.put("department",department);
+                        jsonObject.put("jobTitle",jobTitle);
+                        jsonObject.put("personal",personal);
+                        jsonObject.put("good",good);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    JSONArray put = jsonArray.put(jsonObject);
+                    String s = put.toString();
+                    Logger.e(TAG,s);
                 }else {
                     ToastUtils.show("这些选项为必选,不能不答");
                 }

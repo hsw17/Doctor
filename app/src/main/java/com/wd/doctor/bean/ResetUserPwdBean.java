@@ -1,15 +1,15 @@
 package com.wd.doctor.bean;
 
 /**
- * describe:CheckCodeBean
- * date:2019/12/11
+ * describe:ResetUserPwdBean
+ * date:2019/12/17
  * author:任(Lenovo)
- * function:校验验证码
+ * function:重置用户密码（忘记密码用）
  */
-public class CheckCodeBean {
+public class ResetUserPwdBean {
 
     /**
-     * message : 验证通过
+     * message : 密码重置成功
      * status : 0000
      */
 
