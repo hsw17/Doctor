@@ -45,10 +45,12 @@ public interface Contract {
         void doChooseImagePic(String doctorId,String sessionId,String imagePic);
         //发表评论
         void doPublishComment(String doctorId,String sessionId,String sickCircleId,String content);
-        //校验验证码
-        void doCheckCode(String email,String code);
         //重置用户密码（忘记密码用）
         void doResetUserPwd(String email,String pwd1,String pwd2);
+        //查询医生钱包
+        void doFindDoctorWallet(String doctorId,String sessionId);
+        //绑定身份证
+        void doBindDoctorIdCard(String doctorId,String sessionId,String doctorId1,String name,String sex,String nation,String birthday,String address,String idNumber,String issueOffice);
         //绑定银行卡
         void doBindDoctorBandCard(String doctorId,String sessionId,String bankCardNumber,String bankName,String bankCardType);
     }
@@ -69,6 +71,8 @@ public interface Contract {
         void doPublishComment(String doctorId,String sessionId,String sickCircleId,String content,IModelCallback iModelCallback);
         void doCheckCode(String email,String code,IModelCallback iModelCallback);
         void doResetUserPwd(String email,String pwd1,String pwd2,IModelCallback iModelCallback);
+        void doFindDoctorWallet(String doctorId,String sessionId,IModelCallback iModelCallback);
+        void doBindDoctorIdCard(String doctorId,String sessionId,String doctorId1,String name,String sex,String nation,String birthday,String address,String idNumber,String issueOffice,IModelCallback iModelCallback);
         void doBindDoctorBandCard(String doctorId,String sessionId,String bankCardNumber,String bankName,String bankCardType,IModelCallback iModelCallback);
         interface IModelCallback{
             void onSuccess(Object obj);

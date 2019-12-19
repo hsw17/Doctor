@@ -5,9 +5,13 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.wd.doctor.R;
+import com.wd.doctor.activity.manage.wallet.BindDoctorActivity;
+import com.wd.doctor.bean.FindDoctorWalletBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
 import com.wd.mvplibrary.base.BaseActivity;
+import com.wd.mvplibrary.utils.Logger;
+import com.wd.mvplibrary.utils.SPUtils;
 
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -15,16 +19,19 @@ import butterknife.OnClick;
 
 public class WalletActivity extends BaseActivity<Presenter> implements Contract.IView {
 
+    public static final String TAG = "WalletActivity";
     @BindView(R.id.tv_bindDoctor)
     TextView tvBindDoctor;
     @BindView(R.id.tv_balance_wallet)
     TextView tvBalanceWallet;
     @BindView(R.id.rec_wallet_view)
     RecyclerView recWalletView;
+    private int whetherBindBankCard;
+    private int whetherBindIdCard;
 
     @Override
     protected Presenter providePresenter() {
-        return null;
+        return new Presenter();
     }
 
     @Override
@@ -33,8 +40,22 @@ public class WalletActivity extends BaseActivity<Presenter> implements Contract.
     }
 
     @Override
-    public void onSuccess(Object obj) {
+    protected void initData() {
+        super.initData();
+        SPUtils user = new SPUtils(this, "user");
+        String doctorId = (String) user.getSharedPreference("doctorId", "");
+        String sessionId = (String) user.getSharedPreference("sessionId", "");
+        presenter.doFindDoctorWallet(doctorId,sessionId);
+    }
 
+    @Override
+    public void onSuccess(Object obj) {
+        FindDoctorWalletBean findDoctorWalletBean = (FindDoctorWalletBean) obj;
+        Logger.e(TAG,findDoctorWalletBean.getMessage()+"findDoctorWalletBean");
+        FindDoctorWalletBean.ResultBean result = findDoctorWalletBean.getResult();
+        tvBalanceWallet.setText(result.getBalance()+"");
+        whetherBindBankCard = result.getWhetherBindBankCard();
+        whetherBindIdCard = result.getWhetherBindIdCard();
     }
 
     @Override
@@ -73,6 +94,8 @@ public class WalletActivity extends BaseActivity<Presenter> implements Contract.
                 break;
             case R.id.tv_bindDoctor:
                 Intent intent1 = new Intent(this, BindDoctorActivity.class);
+                intent1.putExtra("whetherBindIdCard",whetherBindIdCard);
+                intent1.putExtra("whetherBindBankCard",whetherBindBankCard);
                 startActivity(intent1);
                 break;
         }

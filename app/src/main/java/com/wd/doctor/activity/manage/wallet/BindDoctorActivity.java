@@ -1,5 +1,6 @@
-package com.wd.doctor.activity.manage;
+package com.wd.doctor.activity.manage.wallet;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,6 +10,7 @@ import com.wd.doctor.R;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
 import com.wd.mvplibrary.base.BaseActivity;
+import com.wd.mvplibrary.utils.Logger;
 
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -25,17 +27,41 @@ public class BindDoctorActivity extends BaseActivity<Presenter> implements Contr
     ImageView imgBankCard;
     @BindView(R.id.tv_bank_card)
     TextView tvBankCard;
+    @BindView(R.id.tv_id_card)
+    TextView tvIdCard;
     @BindView(R.id.rec_bank_card_view)
     RecyclerView recBankCardView;
+    private int whetherBindBankCard;
+    private int whetherBindIdCard;
 
     @Override
     protected Presenter providePresenter() {
-        return null;
+        return new Presenter();
     }
 
     @Override
     protected int provideLayoutId() {
         return R.layout.activity_bind_doctor;
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        Intent intent = getIntent();
+        whetherBindIdCard = intent.getIntExtra("whetherBindIdCard", 0);
+        whetherBindBankCard = intent.getIntExtra("whetherBindBankCard", 0);
+        Logger.e("aaa",whetherBindIdCard+"");
+        Logger.e("bbb",whetherBindBankCard+"");
+        if (whetherBindIdCard==2){
+            imgIdCard.setImageResource(R.mipmap.id_card_front);
+        }else if (whetherBindIdCard==1){
+            tvIdCard.setVisibility(View.GONE);
+        }
+        if (whetherBindBankCard==2) {
+            imgBankCard.setImageResource(R.mipmap.bank_card_front);
+        }else if (whetherBindBankCard==1){
+            tvBankCard.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -68,14 +94,17 @@ public class BindDoctorActivity extends BaseActivity<Presenter> implements Contr
 
     }
 
-    @OnClick({R.id.img_back, R.id.relative_id_card, R.id.relative_bank_card})
+    @OnClick({R.id.img_back, R.id.tv_id_card, R.id.tv_bank_card})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_back:
+                finish();
                 break;
-            case R.id.relative_id_card:
+            case R.id.tv_id_card:
+                Intent intent = new Intent(this, IdCardActivity.class);
+                startActivity(intent);
                 break;
-            case R.id.relative_bank_card:
+            case R.id.tv_bank_card:
                 break;
         }
     }

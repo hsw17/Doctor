@@ -2,10 +2,13 @@ package com.wd.doctor.ap;
 
 import com.wd.doctor.bean.ApplyJoinBean;
 import com.wd.doctor.bean.BindDoctorBankCardBean;
+import com.wd.doctor.bean.BindDoctorIdCard;
+import com.wd.doctor.bean.BindDoctorIdCardBean;
 import com.wd.doctor.bean.CheckCodeBean;
 import com.wd.doctor.bean.ChooseImagePicBean;
 import com.wd.doctor.bean.FindDepartmentBean;
 import com.wd.doctor.bean.FindDoctorByIdBean;
+import com.wd.doctor.bean.FindDoctorWalletBean;
 import com.wd.doctor.bean.FindJobTitleListBean;
 import com.wd.doctor.bean.FindSickCircleInfoBean;
 import com.wd.doctor.bean.FindSickCircleListBean;
@@ -64,4 +67,8 @@ public interface ApiServer {
     Observable<ResetUserPwdBean> doResetUserPwd(@Query("email") String email,@Query("pwd1") String pwd1,@Query("pwd2") String pwd2);
     @POST("doctor/verify/v1/bindDoctorBankCard")
     Observable<BindDoctorBankCardBean> doBindDoctorBandCard(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId,@Query("bankCardNumber") String bankCardNumber,@Query("bankName") String bankName,@Query("bankCardType") String bankCardType);
+    @GET("doctor/verify/v1/doctor/verify/v1/bindDoctorIdCard")
+    Observable<BindDoctorIdCardBean> doBindDoctorIdCard(@Header("doctorId") String doctorId, @Header("sessionId") String sessionId, @Query("name") String name, @Query("sex") String sex, @Query("nation") String nation, @Query("birthday") String birthday, @Query("address") String address, @Query("idNumber") String idNumber, @Query("issueOffice") String issueOffice);
+    @GET("doctor/verify/v1/findDoctorWallet")
+    Observable<FindDoctorWalletBean> doFindDoctorWallet(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId);
 }

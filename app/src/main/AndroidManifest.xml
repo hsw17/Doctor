@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.manage.BindDoctorActivity"></activity>
+        <activity android:name=".activity.manage.wallet.IdCardActivity"></activity>
+        <activity android:name=".activity.manage.wallet.BindDoctorActivity" />
         <activity android:name=".activity.inquiry.InquiryActivity" />
         <activity android:name=".activity.manage.WalletActivity" />
         <activity android:name=".activity.ResetUserPwdActivity" />

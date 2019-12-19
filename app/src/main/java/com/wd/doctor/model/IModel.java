@@ -2,10 +2,12 @@ package com.wd.doctor.model;
 
 import com.wd.doctor.bean.ApplyJoinBean;
 import com.wd.doctor.bean.BindDoctorBankCardBean;
+import com.wd.doctor.bean.BindDoctorIdCardBean;
 import com.wd.doctor.bean.CheckCodeBean;
 import com.wd.doctor.bean.ChooseImagePicBean;
 import com.wd.doctor.bean.FindDepartmentBean;
 import com.wd.doctor.bean.FindDoctorByIdBean;
+import com.wd.doctor.bean.FindDoctorWalletBean;
 import com.wd.doctor.bean.FindJobTitleListBean;
 import com.wd.doctor.bean.FindSickCircleInfoBean;
 import com.wd.doctor.bean.FindSickCircleListBean;
@@ -269,13 +271,13 @@ public class IModel implements Contract.IModel {
     }
 
     @Override
-    public void doBindDoctorBandCard(String doctorId, String sessionId, String bankCardNumber, String bankName, String bankCardType, IModelCallback iModelCallback) {
-        HttpUtil.getInstance().getApiServer().doBindDoctorBandCard(doctorId,sessionId,bankCardNumber,bankName,bankCardType)
+    public void doFindDoctorWallet(String doctorId, String sessionId, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doFindDoctorWallet(doctorId,sessionId)
                 .compose(CommonSchedulers.io2main())
-                .subscribe(new CommonObserver<BindDoctorBankCardBean>() {
+                .subscribe(new CommonObserver<FindDoctorWalletBean>() {
                     @Override
-                    public void onNext(BindDoctorBankCardBean bindDoctorBankCardBean) {
-                        iModelCallback.onSuccess(bindDoctorBankCardBean);
+                    public void onNext(FindDoctorWalletBean findDoctorWalletBean) {
+                        iModelCallback.onSuccess(findDoctorWalletBean);
                     }
 
                     @Override
@@ -284,4 +286,39 @@ public class IModel implements Contract.IModel {
                     }
                 });
     }
+
+    @Override
+    public void doBindDoctorIdCard(String doctorId, String sessionId, String doctorId1, String name, String sex, String nation, String birthday, String address, String idNumber, String issueOffice, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doBindDoctorIdCard(doctorId,sessionId,name,sex,nation,birthday,address,idNumber,issueOffice)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<BindDoctorIdCardBean>() {
+                    @Override
+                    public void onNext(BindDoctorIdCardBean bindDoctorIdCardBean) {
+                        iModelCallback.onSuccess(bindDoctorIdCardBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+    @Override
+    public void doBindDoctorBandCard(String doctorId, String sessionId, String bankCardNumber, String bankName, String bankCardType, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doBindDoctorBandCard(doctorId,sessionId,bankCardNumber,bankName,bankCardType)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<BindDoctorBankCardBean>() {
+                    @Override
+                    public void onNext(BindDoctorBankCardBean bindDoctorBankCardBean) {
+                        iModelCallback.onSuccessOne(bindDoctorBankCardBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+
 }

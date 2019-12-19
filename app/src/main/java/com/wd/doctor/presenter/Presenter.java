@@ -442,41 +442,6 @@ public class Presenter extends BasePresenter<Contract.IView> implements Contract
     }
 
     @Override
-    public void doCheckCode(String email, String code) {
-        iModel.doCheckCode(email, code, new Contract.IModel.IModelCallback() {
-            @Override
-            public void onSuccess(Object obj) {
-
-            }
-
-            @Override
-            public void onSuccessOne(Object one) {
-                getView().onSuccessOne(one);
-            }
-
-            @Override
-            public void onSuccessTwo(Object two) {
-
-            }
-
-            @Override
-            public void onSuccessThree(Object three) {
-
-            }
-
-            @Override
-            public void onSuccessFour(Object four) {
-
-            }
-
-            @Override
-            public void onFail(String str) {
-                getView().onFail(str);
-            }
-        });
-    }
-
-    @Override
     public void doResetUserPwd(String email, String pwd1, String pwd2) {
         iModel.doResetUserPwd(email, pwd1, pwd2, new Contract.IModel.IModelCallback() {
             @Override
@@ -512,8 +477,8 @@ public class Presenter extends BasePresenter<Contract.IView> implements Contract
     }
 
     @Override
-    public void doBindDoctorBandCard(String doctorId, String sessionId, String bankCardNumber, String bankName, String bankCardType) {
-        iModel.doBindDoctorBandCard(doctorId, sessionId, bankCardNumber, bankName, bankCardType, new Contract.IModel.IModelCallback() {
+    public void doFindDoctorWallet(String doctorId, String sessionId) {
+        iModel.doFindDoctorWallet(doctorId, sessionId, new Contract.IModel.IModelCallback() {
             @Override
             public void onSuccess(Object obj) {
                 getView().onSuccess(obj);
@@ -522,6 +487,76 @@ public class Presenter extends BasePresenter<Contract.IView> implements Contract
             @Override
             public void onSuccessOne(Object one) {
 
+            }
+
+            @Override
+            public void onSuccessTwo(Object two) {
+
+            }
+
+            @Override
+            public void onSuccessThree(Object three) {
+
+            }
+
+            @Override
+            public void onSuccessFour(Object four) {
+
+            }
+
+            @Override
+            public void onFail(String str) {
+                getView().onFail(str);
+            }
+        });
+    }
+
+    @Override
+    public void doBindDoctorIdCard(String doctorId, String sessionId, String doctorId1, String name, String sex, String nation, String birthday, String address, String idNumber, String issueOffice) {
+        iModel.doBindDoctorIdCard(doctorId, sessionId, doctorId1, name, sex, nation, birthday, address, idNumber, issueOffice, new Contract.IModel.IModelCallback() {
+            @Override
+            public void onSuccess(Object obj) {
+                getView().onSuccess(obj);
+            }
+
+            @Override
+            public void onSuccessOne(Object one) {
+
+            }
+
+            @Override
+            public void onSuccessTwo(Object two) {
+
+            }
+
+            @Override
+            public void onSuccessThree(Object three) {
+
+            }
+
+            @Override
+            public void onSuccessFour(Object four) {
+
+            }
+
+            @Override
+            public void onFail(String str) {
+                getView().onFail(str);
+            }
+        });
+    }
+
+    @Override
+    public void doBindDoctorBandCard(String doctorId, String sessionId, String bankCardNumber, String bankName, String bankCardType) {
+        iModel.doBindDoctorBandCard(doctorId, sessionId, bankCardNumber, bankName, bankCardType, new Contract.IModel.IModelCallback() {
+            @Override
+            public void onSuccess(Object obj) {
+
+            }
+
+            @Override
+            public void onSuccessOne(Object one) {
+                getView().onSuccess(one);
             }
 
             @Override
