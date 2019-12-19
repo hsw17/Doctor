@@ -1,6 +1,5 @@
 package com.wd.doctor.activity;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
