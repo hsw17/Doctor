@@ -38,6 +38,12 @@ public class FindSickCircleInfoActivity extends BaseActivity<Presenter> implemen
     EditText etFindSickInfo;
     @BindView(R.id.linear1)
     LinearLayout Linear1;
+    @BindView(R.id.linear2)
+    LinearLayout Linear2;
+    @BindView(R.id.tv_content_find_sick_circle_info)
+    TextView tvContentFindSickCircleInfo;
+    @BindView(R.id.linear_find_sick_circle_info)
+    LinearLayout linearFindSickCircleInfo;
     private String doctorId;
     private String sessionId;
     private String sickCircleId;
@@ -75,13 +81,23 @@ public class FindSickCircleInfoActivity extends BaseActivity<Presenter> implemen
         recFindSickInfoView.setLayoutManager(linearLayoutManager);
         MyRecViewFindSickCircleInfoAdapter myRecViewFindSickCircleInfoAdapter = new MyRecViewFindSickCircleInfoAdapter(result, this);
         recFindSickInfoView.setAdapter(myRecViewFindSickCircleInfoAdapter);
+        int whetherContent = result.getWhetherContent();
+        if (whetherContent==1) {
+            Linear2.setVisibility(View.VISIBLE);
+            tvContentFindSickCircleInfo.setText(result.getContent());
+            linearFindSickCircleInfo.setVisibility(View.GONE);
+        }
     }
 
     @Override
     public void onSuccessOne(Object one) {
         PublishCommentBean publishCommentBean = (PublishCommentBean) one;
         Logger.e(TAG,publishCommentBean.getMessage()+"publishCommentBean");
-        ToastUtils.show(publishCommentBean.getMessage());
+        if (publishCommentBean.getStatus().equals("0000")) {
+            ToastUtils.show(publishCommentBean.getMessage());
+        }else {
+            ToastUtils.show(publishCommentBean.getMessage());
+        }
     }
 
     @Override
@@ -114,7 +130,7 @@ public class FindSickCircleInfoActivity extends BaseActivity<Presenter> implemen
                 Linear1.setVisibility(View.VISIBLE);
                 break;
             case R.id.relative_find_sick_circle_info:
-                etFindSickInfo.setVisibility(View.GONE);
+                Linear1.setVisibility(View.GONE);
                 break;
             case R.id.tv_expression:
 
@@ -123,6 +139,9 @@ public class FindSickCircleInfoActivity extends BaseActivity<Presenter> implemen
                 String content = etFindSickInfo.getText().toString();
                 presenter.doPublishComment(doctorId,sessionId,sickCircleId,content);
                 Linear1.setVisibility(View.GONE);
+                Linear2.setVisibility(View.VISIBLE);
+                tvContentFindSickCircleInfo.setText(content);
+                linearFindSickCircleInfo.setVisibility(View.GONE);
                 break;
         }
     }

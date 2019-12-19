@@ -67,6 +67,8 @@ public class ShowActivity extends BaseActivity<Presenter> {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_inquiry_show:
+                Intent intent = new Intent(this,InquiryActivity.class);
+                startActivity(intent);
                 break;
             case R.id.tv_answer_show:
                 Intent intent1 = new Intent(this, AnswerActivity.class);

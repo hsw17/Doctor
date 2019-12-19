@@ -75,7 +75,16 @@ public class FindSickCircleInfoBean {
         private String treatmentProcess;
         private long treatmentStartTime;
         private int userId;
+        private String content;
         private int whetherContent;
+
+        public String getContent() {
+            return content;
+        }
+
+        public void setContent(String content) {
+            this.content = content;
+        }
 
         public int getAmount() {
             return amount;
