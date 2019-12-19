@@ -1,10 +1,9 @@
-package com.wd.doctor.activity;
+package com.wd.doctor.activity.manage;
 
 import android.content.Intent;
-import android.os.Bundle;
 
 import com.wd.doctor.R;
-import com.wd.doctor.adapter.MyRecViewChooseImagePicAdapter;
+import com.wd.doctor.activity.manage.ManageActivity;
 import com.wd.doctor.adapter.MyViewChooseImagePager;
 import com.wd.doctor.bean.ChooseImagePicBean;
 import com.wd.doctor.bean.FindSystemImagePicBean;
@@ -17,12 +16,8 @@ import com.wd.mvplibrary.utils.ToastUtils;
 
 import java.util.List;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.PagerSnapHelper;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ChooseImagePicActivity extends BaseActivity<Presenter> implements Contract.IView {

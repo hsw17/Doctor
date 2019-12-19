@@ -1,4 +1,4 @@
-package com.wd.doctor.activity;
+package com.wd.doctor.activity.answer;
 
 import android.os.Bundle;
 import android.widget.TextView;

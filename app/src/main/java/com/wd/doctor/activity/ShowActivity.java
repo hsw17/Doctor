@@ -1,18 +1,19 @@
 package com.wd.doctor.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.wd.doctor.R;
+import com.wd.doctor.activity.answer.AnswerActivity;
+import com.wd.doctor.activity.inquiry.InquiryActivity;
+import com.wd.doctor.activity.manage.ManageActivity;
 import com.wd.doctor.presenter.Presenter;
 import com.wd.mvplibrary.base.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ShowActivity extends BaseActivity<Presenter> {
@@ -67,7 +68,7 @@ public class ShowActivity extends BaseActivity<Presenter> {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_inquiry_show:
-                Intent intent = new Intent(this,InquiryActivity.class);
+                Intent intent = new Intent(this, InquiryActivity.class);
                 startActivity(intent);
                 break;
             case R.id.tv_answer_show:

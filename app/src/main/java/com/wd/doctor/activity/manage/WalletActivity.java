@@ -1,5 +1,6 @@
-package com.wd.doctor.activity;
+package com.wd.doctor.activity.manage;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -10,7 +11,6 @@ import com.wd.mvplibrary.base.BaseActivity;
 
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class WalletActivity extends BaseActivity<Presenter> implements Contract.IView {
@@ -62,7 +62,7 @@ public class WalletActivity extends BaseActivity<Presenter> implements Contract.
 
     }
 
-    @OnClick({R.id.img_back, R.id.btn_wallet})
+    @OnClick({R.id.img_back, R.id.btn_wallet,R.id.tv_bindDoctor})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_back:
@@ -70,6 +70,10 @@ public class WalletActivity extends BaseActivity<Presenter> implements Contract.
                 break;
             case R.id.btn_wallet:
 
+                break;
+            case R.id.tv_bindDoctor:
+                Intent intent1 = new Intent(this, BindDoctorActivity.class);
+                startActivity(intent1);
                 break;
         }
     }

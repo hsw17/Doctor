@@ -4,14 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.wd.doctor.R;
-import com.wd.doctor.activity.FindSickCircleInfoActivity;
+import com.wd.doctor.activity.answer.FindSickCircleInfoActivity;
 import com.wd.doctor.adapter.MyRecViewFindSickCircleAdapter;
 import com.wd.doctor.bean.FindSickCircleListBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
 import com.wd.mvplibrary.base.BaseFragment;
 import com.wd.mvplibrary.utils.Logger;
-import com.wd.mvplibrary.utils.SPUtils;
 
 import java.util.List;
 

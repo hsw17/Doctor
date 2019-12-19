@@ -1,4 +1,4 @@
-package com.wd.doctor.activity;
+package com.wd.doctor.activity.answer;
 
 import android.content.Intent;
 import android.os.Bundle;

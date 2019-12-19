@@ -1,8 +1,7 @@
-package com.wd.doctor.activity;
+package com.wd.doctor.activity.answer;
 
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.material.tabs.TabLayout;
@@ -19,7 +18,6 @@ import java.util.List;
 
 import androidx.viewpager.widget.ViewPager;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class AnswerActivity extends BaseActivity<Presenter> implements Contract.IView {

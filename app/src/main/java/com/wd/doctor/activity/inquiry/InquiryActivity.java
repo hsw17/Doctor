@@ -1,4 +1,4 @@
-package com.wd.doctor.activity;
+package com.wd.doctor.activity.inquiry;
 
 import androidx.appcompat.app.AppCompatActivity;
 

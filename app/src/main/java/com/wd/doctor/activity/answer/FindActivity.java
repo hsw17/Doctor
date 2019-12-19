@@ -1,7 +1,6 @@
-package com.wd.doctor.activity;
+package com.wd.doctor.activity.answer;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -14,7 +13,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.wd.doctor.R;
-import com.wd.doctor.adapter.MyRecViewHistoryAdapter;
 import com.wd.doctor.adapter.MyRecViewSearchSickCircleAdapter;
 import com.wd.doctor.bean.SearchSickCircleBean;
 import com.wd.doctor.contract.Contract;
@@ -29,7 +27,6 @@ import java.util.List;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class FindActivity extends BaseActivity<Presenter> implements Contract.IView {

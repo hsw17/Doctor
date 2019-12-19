@@ -1,23 +1,21 @@
-package com.wd.doctor.activity;
+package com.wd.doctor.activity.manage;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.wd.doctor.R;
+import com.wd.doctor.activity.answer.DataActivity;
 import com.wd.doctor.bean.FindDoctorByIdBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
 import com.wd.mvplibrary.base.BaseActivity;
 import com.wd.mvplibrary.utils.Logger;
 import com.wd.mvplibrary.utils.SPUtils;
-import com.wd.mvplibrary.utils.ToastUtils;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class ManageActivity extends BaseActivity<Presenter> implements Contract.IView {
@@ -94,7 +92,7 @@ public class ManageActivity extends BaseActivity<Presenter> implements Contract.
             case R.id.linear_history_manage:
                 break;
             case R.id.linear_wallet_manage:
-                Intent intent3 = new Intent(this,WalletActivity.class);
+                Intent intent3 = new Intent(this, WalletActivity.class);
                 startActivity(intent3);
                 break;
             case R.id.linear_accept_manage:
