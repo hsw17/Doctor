@@ -101,8 +101,8 @@ public class IModel implements Contract.IModel {
     }
 
     @Override
-    public void doApplyJoin(String email, String code, String pwd1, String pwd2, String name, String inauguralHospital, String departmentName, String jobTitle, String personalProfile, String goodField, IModelCallback iModelCallback) {
-        HttpUtil.getInstance().getApiServer().doApplyJoin()
+    public void doApplyJoin(String applyJoin, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doApplyJoin(applyJoin)
                 .compose(CommonSchedulers.io2main())
                 .subscribe(new CommonObserver<ApplyJoinBean>() {
                     @Override

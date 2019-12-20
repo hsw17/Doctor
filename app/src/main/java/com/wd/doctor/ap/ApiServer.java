@@ -20,6 +20,7 @@ import com.wd.doctor.bean.SearchSickCircleBean;
 import com.wd.doctor.bean.SendEmailCodeBean;
 
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -46,7 +47,7 @@ public interface ApiServer {
     @GET("doctor/v1/findJobTitleList")
     Observable<FindJobTitleListBean> doFindJobTitle();
     @POST("doctor/v1/applyJoin")
-    Observable<ApplyJoinBean> doApplyJoin();
+    Observable<ApplyJoinBean> doApplyJoin(@Body String applyJoin);
     @GET("doctor/v1/findSystemImagePic")
     Observable<FindSystemImagePicBean> doFindSystem();
     @GET("doctor/sickCircle/v1/findSickCircleList")

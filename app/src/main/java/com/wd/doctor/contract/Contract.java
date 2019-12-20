@@ -2,6 +2,8 @@ package com.wd.doctor.contract;
 
 import com.wd.mvplibrary.base.IBaseView;
 
+import okhttp3.RequestBody;
+
 /**
  * describe:Contract
  * date:2019/12/11
@@ -30,7 +32,7 @@ public interface Contract {
         //查询医生职称列表
         void doFindJobTitle();
         //申请入驻
-        void doApplyJoin(String email,String code,String pwd1,String pwd2,String name,String inauguralHospital,String departmentName,String jobTitle,String personalProfile,String goodField);
+        void doApplyJoin(String applyJoin);
         //查询系统形象照
         void doFindSystem();
         //查询病友圈详情
@@ -61,7 +63,7 @@ public interface Contract {
         void doSendEmail(String email,IModelCallback iModelCallback);
         void doFindDepartment(IModelCallback iModelCallback);
         void doFindJobTitle(IModelCallback iModelCallback);
-        void doApplyJoin(String email,String code,String pwd1,String pwd2,String name,String inauguralHospital,String departmentName,String jobTitle,String personalProfile,String goodField,IModelCallback iModelCallback);
+        void doApplyJoin(String applyJoin,IModelCallback iModelCallback);
         void doFindSystem(IModelCallback iModelCallback);
         void doFindSickCircle(String departmentId,String page,String count,IModelCallback iModelCallback);
         void doSearchSickCircle(String keyWord,IModelCallback iModelCallback);
