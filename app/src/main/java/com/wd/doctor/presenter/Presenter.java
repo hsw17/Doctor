@@ -5,6 +5,8 @@ import com.wd.doctor.model.IModel;
 import com.wd.mvplibrary.base.BasePresenter;
 import com.wd.mvplibrary.utils.Logger;
 
+import okhttp3.RequestBody;
+
 /**
  * describe:Presenter
  * date:2019/12/11
@@ -161,8 +163,8 @@ public class Presenter extends BasePresenter<Contract.IView> implements Contract
     }
 
     @Override
-    public void doApplyJoin(String email, String code, String pwd1, String pwd2, String name, String inauguralHospital, String departmentName, String jobTitle, String personalProfile, String goodField) {
-        iModel.doApplyJoin(email, code, pwd1, pwd2, name, inauguralHospital, departmentName, jobTitle, personalProfile, goodField, new Contract.IModel.IModelCallback() {
+    public void doApplyJoin(String applyJoin) {
+        iModel.doApplyJoin(applyJoin, new Contract.IModel.IModelCallback() {
             @Override
             public void onSuccess(Object obj) {
                 getView().onSuccess(obj);
@@ -194,6 +196,7 @@ public class Presenter extends BasePresenter<Contract.IView> implements Contract
             }
         });
     }
+
 
     @Override
     public void doFindSystem() {
