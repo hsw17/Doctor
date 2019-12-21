@@ -6,6 +6,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <application
         android:name="com.wd.mvplibrary.app.App"
@@ -22,7 +26,7 @@
         <activity android:name=".activity.manage.WalletActivity" />
         <activity android:name=".activity.ResetUserPwdActivity" />
         <activity android:name=".activity.manage.ChooseImagePicActivity" />
-        <activity android:name=".activity.answer.DataActivity" />
+        <activity android:name=".activity.manage.DataActivity" />
         <activity android:name=".activity.manage.ManageActivity" />
         <activity android:name=".activity.answer.FindSickCircleInfoActivity" />
         <activity android:name=".activity.answer.FindActivity" />

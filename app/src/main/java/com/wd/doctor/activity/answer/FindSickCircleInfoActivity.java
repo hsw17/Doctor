@@ -14,6 +14,7 @@ import com.wd.doctor.bean.FindSickCircleInfoBean;
 import com.wd.doctor.bean.PublishCommentBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
+import com.wd.doctor.util.HideIMEUtil;
 import com.wd.mvplibrary.base.BaseActivity;
 import com.wd.mvplibrary.utils.Logger;
 import com.wd.mvplibrary.utils.SPUtils;
@@ -68,6 +69,7 @@ public class FindSickCircleInfoActivity extends BaseActivity<Presenter> implemen
         sickCircleId = intent.getStringExtra("sickCircleId");
         presenter.doFindSickInfo(doctorId, sessionId, sickCircleId);
         ToastUtils.init(this);
+        HideIMEUtil.wrap(this);
     }
 
     @Override

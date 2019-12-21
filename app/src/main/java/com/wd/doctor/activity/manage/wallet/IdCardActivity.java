@@ -12,11 +12,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.baidu.ocr.sdk.OCR;
+import com.baidu.ocr.sdk.OnResultListener;
+import com.baidu.ocr.sdk.exception.OCRError;
+import com.baidu.ocr.sdk.model.AccessToken;
+import com.baidu.ocr.sdk.model.IDCardParams;
+import com.baidu.ocr.sdk.model.IDCardResult;
+import com.baidu.ocr.sdk.model.Word;
 import com.wd.doctor.R;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
 import com.wd.mvplibrary.base.BaseActivity;
 import com.wd.mvplibrary.utils.Logger;
+
+import java.io.File;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
@@ -48,15 +57,34 @@ public class IdCardActivity extends BaseActivity<Presenter> implements Contract.
     ImageView imgCuowuFront;
     @BindView(R.id.img_cuowu_back)
     ImageView imgCuowuBack;
+    private String path;
+    private String path1;
 
     @Override
     protected Presenter providePresenter() {
-        return null;
+        return new Presenter();
     }
 
     @Override
     protected int provideLayoutId() {
         return R.layout.activity_id_card;
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+        OCR.getInstance(this).initAccessTokenWithAkSk(new OnResultListener<AccessToken>() {
+            @Override
+            public void onResult(AccessToken accessToken) {
+                // 调用成功，返回AccessToken对象
+                String token = accessToken.getAccessToken();
+            }
+
+            @Override
+            public void onError(OCRError ocrError) {
+                // 调用失败，返回OCRError子类SDKError对象
+            }
+        },getApplicationContext(),"eG2VaGYB41ffrpAvTqQ50FPK","qL7Uas2mUGtfRZ6nNPGnRvQHi3f5wjEF");
     }
 
     @Override
@@ -89,7 +117,8 @@ public class IdCardActivity extends BaseActivity<Presenter> implements Contract.
 
     }
 
-    @OnClick({R.id.img_back, R.id.img_camera_id_card_front, R.id.img_camera_id_card_back, R.id.btn_next_id_card, R.id.btn_finish_id_card,R.id.img_cuowu_front, R.id.img_cuowu_back})
+    @OnClick({R.id.img_back, R.id.img_camera_id_card_front, R.id.img_camera_id_card_back, R.id.btn_next_id_card, R.id.btn_finish_id_card,
+            R.id.img_cuowu_front, R.id.img_cuowu_back})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_back:
@@ -112,6 +141,20 @@ public class IdCardActivity extends BaseActivity<Presenter> implements Contract.
                 imgCuowuBack.setVisibility(View.VISIBLE);
                 break;
             case R.id.btn_finish_id_card:
+                IDCardParams idCardParams = new IDCardParams();
+                idCardParams.setImageFile(new File(path));
+                OCR.getInstance(this).recognizeIDCard(idCardParams, new OnResultListener<IDCardResult>() {
+                    @Override
+                    public void onResult(IDCardResult idCardResult) {
+                        Logger.e("address",idCardResult.toString());
+                        
+                    }
+
+                    @Override
+                    public void onError(OCRError ocrError) {
+                        Logger.e("aaa",ocrError.toString());
+                    }
+                });
                 break;
             case R.id.img_cuowu_front:
                 imgIdCardFront.setImageDrawable(null);
@@ -142,7 +185,7 @@ public class IdCardActivity extends BaseActivity<Presenter> implements Contract.
                     int columnIndexOrThrow = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
                     cursor.moveToFirst();
 
-                    String path = cursor.getString(columnIndexOrThrow);
+                    path = cursor.getString(columnIndexOrThrow);
                     Logger.e("aaa", "onActivityResult: " + path);
 //                    文件
                     Bitmap bitmap = BitmapFactory.decodeFile(path);
@@ -159,7 +202,7 @@ public class IdCardActivity extends BaseActivity<Presenter> implements Contract.
                     int columnIndexOrThrow1 = cursor1.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
                     cursor1.moveToFirst();
 
-                    String path1 = cursor1.getString(columnIndexOrThrow1);
+                    path1 = cursor1.getString(columnIndexOrThrow1);
                     Logger.e("aaa", "onActivityResult: " + path1);
 //                    文件
                     Bitmap bitmap1 = BitmapFactory.decodeFile(path1);

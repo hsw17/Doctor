@@ -59,6 +59,8 @@ public class AnswerActivity extends BaseActivity<Presenter> implements Contract.
             FindDepartmentBean.ResultBean resultBean = result.get(i);
             tab.add(resultBean.getDepartmentName());
         }
+        tabLayoutAnswer.setSelectedTabIndicatorHeight(0);
+        tabLayoutAnswer.offsetLeftAndRight(10);
         tabLayoutAnswer.setupWithViewPager(viewPagerAnswer);
         MyAdapter myAdapter = new MyAdapter(getSupportFragmentManager(), tab, result);
         viewPagerAnswer.setAdapter(myAdapter);

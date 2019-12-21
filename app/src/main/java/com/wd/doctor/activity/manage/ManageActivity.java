@@ -7,7 +7,6 @@ import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.wd.doctor.R;
-import com.wd.doctor.activity.answer.DataActivity;
 import com.wd.doctor.bean.FindDoctorByIdBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
