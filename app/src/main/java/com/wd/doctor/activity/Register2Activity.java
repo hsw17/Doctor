@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.wd.doctor.R;
+import com.wd.doctor.bean.ApplyJoinBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
 import com.wd.mvplibrary.base.BaseActivity;
@@ -19,6 +20,9 @@ import com.wd.mvplibrary.utils.ToastUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -98,9 +102,15 @@ public class Register2Activity extends BaseActivity<Presenter> implements Contra
 
     @Override
     public void onSuccess(Object obj) {
+        ApplyJoinBean applyJoinBean = (ApplyJoinBean) obj;
+        Logger.e(TAG,applyJoinBean.getMessage());
+        if ("0000".equals(applyJoinBean.getStatus())) {
+            Intent intent = new Intent(this, Register3Activity.class);
+            startActivity(intent);
+        }else {
+            ToastUtils.show(applyJoinBean.getMessage());
+        }
 
-        //Intent intent = new Intent(this, Register3Activity.class);
-        //startActivity(intent);
     }
 
     @Override
@@ -163,6 +173,9 @@ public class Register2Activity extends BaseActivity<Presenter> implements Contra
                         e.printStackTrace();
                     }
                     JSONArray put = jsonArray.put(jsonObject);
+                    Map<String,Object> map = new HashMap<>();
+                    map.put("ApplyMap",put);
+                    presenter.doApplyJoin(map);
                     String s = put.toString();
                     Logger.e(TAG,s);
                 }else {

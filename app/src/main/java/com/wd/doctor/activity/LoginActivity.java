@@ -199,7 +199,7 @@ public class LoginActivity extends BaseActivity<Presenter> implements Contract.I
                 startActivity(intent1);
                 break;
             case R.id.tv_register_login:
-                Intent intent = new Intent(this, RegisterActivity.class);
+                Intent intent = new Intent(this, Register1Activity.class);
                 startActivity(intent);
                 break;
             case R.id.btn_login:

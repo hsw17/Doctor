@@ -6,6 +6,7 @@ import com.wd.doctor.bean.BindDoctorIdCardBean;
 import com.wd.doctor.bean.CheckCodeBean;
 import com.wd.doctor.bean.ChooseImagePicBean;
 import com.wd.doctor.bean.FindDepartmentBean;
+import com.wd.doctor.bean.FindDoctorBankCardByIdBean;
 import com.wd.doctor.bean.FindDoctorByIdBean;
 import com.wd.doctor.bean.FindDoctorWalletBean;
 import com.wd.doctor.bean.FindJobTitleListBean;
@@ -17,12 +18,16 @@ import com.wd.doctor.bean.PublishCommentBean;
 import com.wd.doctor.bean.ResetUserPwdBean;
 import com.wd.doctor.bean.SearchSickCircleBean;
 import com.wd.doctor.bean.SendEmailCodeBean;
+import com.wd.doctor.bean.UploadImagePicBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.util.HttpUtil;
 import com.wd.mvplibrary.utils.CommonObserver;
 import com.wd.mvplibrary.utils.CommonSchedulers;
 
+import java.util.Map;
+
 import io.reactivex.internal.observers.BlockingBaseObserver;
+import okhttp3.MultipartBody;
 
 /**
  * describe:IModel
@@ -101,8 +106,8 @@ public class IModel implements Contract.IModel {
     }
 
     @Override
-    public void doApplyJoin(String applyJoin, IModelCallback iModelCallback) {
-        HttpUtil.getInstance().getApiServer().doApplyJoin(applyJoin)
+    public void doApplyJoin(Map<String,Object> ApplyMap, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doApplyJoin(ApplyMap)
                 .compose(CommonSchedulers.io2main())
                 .subscribe(new CommonObserver<ApplyJoinBean>() {
                     @Override
@@ -288,8 +293,8 @@ public class IModel implements Contract.IModel {
     }
 
     @Override
-    public void doBindDoctorIdCard(String doctorId, String sessionId, String doctorId1, String name, String sex, String nation, String birthday, String address, String idNumber, String issueOffice, IModelCallback iModelCallback) {
-        HttpUtil.getInstance().getApiServer().doBindDoctorIdCard(doctorId,sessionId,name,sex,nation,birthday,address,idNumber,issueOffice)
+    public void doBindDoctorIdCard(String doctorId, String sessionId, Map<String,Object> BodyMap, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doBindDoctorIdCard(doctorId,sessionId,BodyMap)
                 .compose(CommonSchedulers.io2main())
                 .subscribe(new CommonObserver<BindDoctorIdCardBean>() {
                     @Override
@@ -311,6 +316,40 @@ public class IModel implements Contract.IModel {
                     @Override
                     public void onNext(BindDoctorBankCardBean bindDoctorBankCardBean) {
                         iModelCallback.onSuccessOne(bindDoctorBankCardBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void doFindUploadImagePic(String doctorId, String sessionId, MultipartBody.Part imagePic, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doFindUploadImagePic(doctorId,sessionId,imagePic)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<UploadImagePicBean>() {
+                    @Override
+                    public void onNext(UploadImagePicBean uploadImagePicBean) {
+                        iModelCallback.onSuccess(uploadImagePicBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void doFindDoctorBankCardById(String doctorId, String sessionId,IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doFindDoctorBankCardById(doctorId,sessionId)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new BlockingBaseObserver<FindDoctorBankCardByIdBean>() {
+                    @Override
+                    public void onNext(FindDoctorBankCardByIdBean findDoctorBankCardByIdBean) {
+                        iModelCallback.onSuccessOne(findDoctorBankCardByIdBean);
                     }
 
                     @Override

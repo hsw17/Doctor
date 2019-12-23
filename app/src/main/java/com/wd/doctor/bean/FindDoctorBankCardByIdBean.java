@@ -4,9 +4,10 @@ package com.wd.doctor.bean;
  * describe:FindDoctorBankCardByIdBean
  * date:2019/12/11
  * author:任(Lenovo)
- * function:
+ * function:查询医生银行卡信息
  */
 public class FindDoctorBankCardByIdBean {
+
 
     /**
      * result : {"bankCardNumber":"1","bankCardType":1,"bankName":"1"}

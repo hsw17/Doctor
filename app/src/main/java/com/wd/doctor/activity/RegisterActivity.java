@@ -253,7 +253,7 @@ public class RegisterActivity extends BaseActivity<Presenter> implements Contrac
                 break;
             case R.id.btn_next_register:
                 if (!TextUtils.isEmpty(email) && !TextUtils.isEmpty(code) && !TextUtils.isEmpty(pwd) && !TextUtils.isEmpty(pwd1)) {
-                    Intent intent = new Intent(this, Register1Activity.class);
+                    Intent intent = new Intent(this, Register2Activity.class);
                     SPUtils reg = new SPUtils(this, "reg");
                     reg.SharedPreferenceput("email",email);
                     reg.SharedPreferenceput("code",code);

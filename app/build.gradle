@@ -61,5 +61,6 @@ dependencies {
     implementation project(path: ':mvplibrary')
     implementation 'com.rmtheis:tess-two:9.0.0'
     implementation files('lib\\ocr-sdk.jar')
+    compile project(path: ':orc_library')
 
 }

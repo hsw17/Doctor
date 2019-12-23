@@ -117,7 +117,7 @@ public class Register1Activity extends BaseActivity<Presenter> implements Contra
                 String department = "小儿科";
                 String jobTitle = "主任";
                 if (!TextUtils.isEmpty(name) && !TextUtils.isEmpty(hospital) && !TextUtils.isEmpty(department) && !TextUtils.isEmpty(jobTitle)) {
-                    Intent intent = new Intent(this, Register2Activity.class);
+                    Intent intent = new Intent(this, RegisterActivity.class);
                     SPUtils reg = new SPUtils(this, "reg");
                     reg.SharedPreferenceput("name",name);
                     reg.SharedPreferenceput("hospital",hospital);

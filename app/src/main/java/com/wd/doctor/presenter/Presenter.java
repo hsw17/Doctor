@@ -5,6 +5,9 @@ import com.wd.doctor.model.IModel;
 import com.wd.mvplibrary.base.BasePresenter;
 import com.wd.mvplibrary.utils.Logger;
 
+import java.util.Map;
+
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 /**
@@ -163,8 +166,8 @@ public class Presenter extends BasePresenter<Contract.IView> implements Contract
     }
 
     @Override
-    public void doApplyJoin(String applyJoin) {
-        iModel.doApplyJoin(applyJoin, new Contract.IModel.IModelCallback() {
+    public void doApplyJoin(Map<String,Object> ApplyMap) {
+        iModel.doApplyJoin(ApplyMap, new Contract.IModel.IModelCallback() {
             @Override
             public void onSuccess(Object obj) {
                 getView().onSuccess(obj);
@@ -515,8 +518,8 @@ public class Presenter extends BasePresenter<Contract.IView> implements Contract
     }
 
     @Override
-    public void doBindDoctorIdCard(String doctorId, String sessionId, String doctorId1, String name, String sex, String nation, String birthday, String address, String idNumber, String issueOffice) {
-        iModel.doBindDoctorIdCard(doctorId, sessionId, doctorId1, name, sex, nation, birthday, address, idNumber, issueOffice, new Contract.IModel.IModelCallback() {
+    public void doBindDoctorIdCard(String doctorId, String sessionId, Map<String,Object> BodyMap) {
+        iModel.doBindDoctorIdCard(doctorId, sessionId, BodyMap, new Contract.IModel.IModelCallback() {
             @Override
             public void onSuccess(Object obj) {
                 getView().onSuccess(obj);
@@ -560,6 +563,76 @@ public class Presenter extends BasePresenter<Contract.IView> implements Contract
             @Override
             public void onSuccessOne(Object one) {
                 getView().onSuccess(one);
+            }
+
+            @Override
+            public void onSuccessTwo(Object two) {
+
+            }
+
+            @Override
+            public void onSuccessThree(Object three) {
+
+            }
+
+            @Override
+            public void onSuccessFour(Object four) {
+
+            }
+
+            @Override
+            public void onFail(String str) {
+                getView().onFail(str);
+            }
+        });
+    }
+
+    @Override
+    public void doFindUploadImagePic(String doctorId, String sessionId, MultipartBody.Part imagePic) {
+        iModel.doFindUploadImagePic(doctorId, sessionId, imagePic, new Contract.IModel.IModelCallback() {
+            @Override
+            public void onSuccess(Object obj) {
+                getView().onSuccess(obj);
+            }
+
+            @Override
+            public void onSuccessOne(Object one) {
+
+            }
+
+            @Override
+            public void onSuccessTwo(Object two) {
+
+            }
+
+            @Override
+            public void onSuccessThree(Object three) {
+
+            }
+
+            @Override
+            public void onSuccessFour(Object four) {
+
+            }
+
+            @Override
+            public void onFail(String str) {
+                getView().onFail(str);
+            }
+        });
+    }
+
+    @Override
+    public void doFindDoctorBankCardById(String doctorId, String sessionId) {
+        iModel.doFindDoctorBankCardById(doctorId, sessionId, new Contract.IModel.IModelCallback() {
+            @Override
+            public void onSuccess(Object obj) {
+
+            }
+
+            @Override
+            public void onSuccessOne(Object one) {
+                getView().onSuccessOne(one);
             }
 
             @Override

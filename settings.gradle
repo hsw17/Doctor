@@ -1,2 +1,2 @@
-include ':app', ':mvplibrary'
+include ':app', ':mvplibrary', ':orc_library'
 rootProject.name='DoctorApp'

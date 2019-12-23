@@ -109,7 +109,6 @@
                 android:textColor="#3087ea"/>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rec_bank_card_view"
-                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
         </RelativeLayout>

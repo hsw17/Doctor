@@ -2,6 +2,9 @@ package com.wd.doctor.contract;
 
 import com.wd.mvplibrary.base.IBaseView;
 
+import java.util.Map;
+
+import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 /**
@@ -32,7 +35,7 @@ public interface Contract {
         //查询医生职称列表
         void doFindJobTitle();
         //申请入驻
-        void doApplyJoin(String applyJoin);
+        void doApplyJoin(Map<String,Object> ApplyMap);
         //查询系统形象照
         void doFindSystem();
         //查询病友圈详情
@@ -52,9 +55,13 @@ public interface Contract {
         //查询医生钱包
         void doFindDoctorWallet(String doctorId,String sessionId);
         //绑定身份证
-        void doBindDoctorIdCard(String doctorId,String sessionId,String doctorId1,String name,String sex,String nation,String birthday,String address,String idNumber,String issueOffice);
+        void doBindDoctorIdCard(String doctorId, String sessionId, Map<String,Object> BodyMap);
         //绑定银行卡
         void doBindDoctorBandCard(String doctorId,String sessionId,String bankCardNumber,String bankName,String bankCardType);
+        //上传头像
+        void doFindUploadImagePic(String doctorId,String sessionId, MultipartBody.Part imagePic);
+        //查询银行卡
+        void doFindDoctorBankCardById(String doctorId,String sessionId);
     }
 
     //M层
@@ -63,7 +70,7 @@ public interface Contract {
         void doSendEmail(String email,IModelCallback iModelCallback);
         void doFindDepartment(IModelCallback iModelCallback);
         void doFindJobTitle(IModelCallback iModelCallback);
-        void doApplyJoin(String applyJoin,IModelCallback iModelCallback);
+        void doApplyJoin(Map<String,Object> ApplyMap,IModelCallback iModelCallback);
         void doFindSystem(IModelCallback iModelCallback);
         void doFindSickCircle(String departmentId,String page,String count,IModelCallback iModelCallback);
         void doSearchSickCircle(String keyWord,IModelCallback iModelCallback);
@@ -74,8 +81,10 @@ public interface Contract {
         void doCheckCode(String email,String code,IModelCallback iModelCallback);
         void doResetUserPwd(String email,String pwd1,String pwd2,IModelCallback iModelCallback);
         void doFindDoctorWallet(String doctorId,String sessionId,IModelCallback iModelCallback);
-        void doBindDoctorIdCard(String doctorId,String sessionId,String doctorId1,String name,String sex,String nation,String birthday,String address,String idNumber,String issueOffice,IModelCallback iModelCallback);
+        void doBindDoctorIdCard(String doctorId,String sessionId,Map<String,Object> BodyMap,IModelCallback iModelCallback);
         void doBindDoctorBandCard(String doctorId,String sessionId,String bankCardNumber,String bankName,String bankCardType,IModelCallback iModelCallback);
+        void doFindUploadImagePic(String doctorId,String sessionId, MultipartBody.Part imagePic,IModelCallback iModelCallback);
+        void doFindDoctorBankCardById(String doctorId,String sessionId,IModelCallback iModelCallback);
         interface IModelCallback{
             void onSuccess(Object obj);
             void onSuccessOne(Object one);

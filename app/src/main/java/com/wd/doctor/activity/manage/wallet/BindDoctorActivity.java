@@ -7,11 +7,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wd.doctor.R;
+import com.wd.doctor.adapter.MyBindDoctorBankCardAdapter;
+import com.wd.doctor.bean.FindDoctorBankCardByIdBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
 import com.wd.mvplibrary.base.BaseActivity;
 import com.wd.mvplibrary.utils.Logger;
+import com.wd.mvplibrary.utils.SPUtils;
 
+import java.util.List;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,6 +39,7 @@ public class BindDoctorActivity extends BaseActivity<Presenter> implements Contr
     RecyclerView recBankCardView;
     private int whetherBindBankCard;
     private int whetherBindIdCard;
+    public static final String TAG = "BindDoctorActivity";
 
     @Override
     protected Presenter providePresenter() {
@@ -47,6 +54,9 @@ public class BindDoctorActivity extends BaseActivity<Presenter> implements Contr
     @Override
     protected void initData() {
         super.initData();
+        SPUtils user = new SPUtils(this, "user");
+        String doctorId = (String) user.getSharedPreference("doctorId", "");
+        String sessionId = (String) user.getSharedPreference("sessionId", "");
         Intent intent = getIntent();
         whetherBindIdCard = intent.getIntExtra("whetherBindIdCard", 0);
         whetherBindBankCard = intent.getIntExtra("whetherBindBankCard", 0);
@@ -61,19 +71,27 @@ public class BindDoctorActivity extends BaseActivity<Presenter> implements Contr
             imgBankCard.setImageResource(R.mipmap.bank_card_front);
         }else if (whetherBindBankCard==1){
             tvBankCard.setVisibility(View.GONE);
+            presenter.doFindDoctorBankCardById(doctorId,sessionId);
+            imgBankCard.setImageResource(R.mipmap.bank_card);
+            recBankCardView.setVisibility(View.VISIBLE);
         }
     }
 
+
+    @Override
+    public void onSuccessOne(Object one) {
+        FindDoctorBankCardByIdBean findDoctorBankCardByIdBean = (FindDoctorBankCardByIdBean) one;
+        Logger.e(TAG,findDoctorBankCardByIdBean.getMessage()+"findDoctorBankCardByIdBean");
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recBankCardView.setLayoutManager(linearLayoutManager);
+        FindDoctorBankCardByIdBean.ResultBean result = findDoctorBankCardByIdBean.getResult();
+        MyBindDoctorBankCardAdapter myBindDoctorBankCardAdapter = new MyBindDoctorBankCardAdapter(result, this);
+        recBankCardView.setAdapter(myBindDoctorBankCardAdapter);
+    }
     @Override
     public void onSuccess(Object obj) {
 
     }
-
-    @Override
-    public void onSuccessOne(Object one) {
-
-    }
-
     @Override
     public void onSuccessTwo(Object two) {
 
@@ -103,6 +121,7 @@ public class BindDoctorActivity extends BaseActivity<Presenter> implements Contr
             case R.id.tv_id_card:
                 Intent intent = new Intent(this, IdCardActivity.class);
                 startActivity(intent);
+                finish();
                 break;
             case R.id.tv_bank_card:
                 break;
