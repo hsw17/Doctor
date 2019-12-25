@@ -124,6 +124,8 @@ public class BindDoctorActivity extends BaseActivity<Presenter> implements Contr
                 finish();
                 break;
             case R.id.tv_bank_card:
+                Intent intent1 = new Intent(this, BankCradActivity.class);
+                startActivity(intent1);
                 break;
         }
     }

@@ -97,6 +97,8 @@ public class ManageActivity extends BaseActivity<Presenter> implements Contract.
             case R.id.linear_accept_manage:
                 break;
             case R.id.linear_reply_manage:
+                Intent intent4 = new Intent(this, ReplyActivity.class);
+                startActivity(intent4);
                 break;
             case R.id.img_back:
                 finish();

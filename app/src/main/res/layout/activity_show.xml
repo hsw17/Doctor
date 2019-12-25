@@ -33,9 +33,9 @@
             android:layout_height="@dimen/dp_150"
             android:layout_marginLeft="@dimen/dp_20"
             android:layout_marginRight="@dimen/dp_20"
+            android:id="@+id/tv_inquiry_show"
             android:background="@mipmap/inquiry_bg">
             <TextView
-                android:id="@+id/tv_inquiry_show"
                 android:layout_width="@dimen/dp_59"
                 android:layout_height="@dimen/dp_30"
                 android:background="@mipmap/tip_box"
@@ -49,13 +49,13 @@
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
+            android:id="@+id/tv_answer_show"
             android:layout_height="@dimen/dp_150"
             android:layout_marginTop="@dimen/sp_10"
             android:background="@mipmap/promise_bg"
             android:layout_marginRight="@dimen/dp_20"
             android:layout_marginLeft="@dimen/dp_20">
             <TextView
-                android:id="@+id/tv_answer_show"
                 android:layout_width="@dimen/dp_59"
                 android:layout_height="@dimen/dp_30"
                 android:background="@mipmap/tip_box"
@@ -76,6 +76,7 @@
             android:layout_marginLeft="@dimen/dp_20"
             android:layout_marginTop="@dimen/dp_30"/>
         <RelativeLayout
+            android:id="@+id/tv_manage_show"
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_150"
             android:layout_marginTop="@dimen/sp_20"
@@ -123,7 +124,6 @@
                     android:layout_marginTop="@dimen/sp_12"/>
             </LinearLayout>
             <TextView
-                android:id="@+id/tv_manage_show"
                 android:layout_width="@dimen/dp_59"
                 android:layout_height="@dimen/dp_30"
                 android:background="@mipmap/tip_box"

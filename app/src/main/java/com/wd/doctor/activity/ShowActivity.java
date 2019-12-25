@@ -3,6 +3,7 @@ package com.wd.doctor.activity;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -28,12 +29,12 @@ public class ShowActivity extends BaseActivity<Presenter> {
     @BindView(R.id.tv_departmentName_show)
     TextView tvDepartmentNameShow;
     @BindView(R.id.tv_inquiry_show)
-    TextView tvInquiryShow;
+    RelativeLayout tvInquiryShow;
     @BindView(R.id.tv_answer_show)
-    TextView tvAnswerShow;
+    RelativeLayout tvAnswerShow;
 
     @BindView(R.id.tv_manage_show)
-    TextView tvManageShow;
+    RelativeLayout tvManageShow;
     @BindView(R.id.sView_show)
     ImageView sViewShow;
 

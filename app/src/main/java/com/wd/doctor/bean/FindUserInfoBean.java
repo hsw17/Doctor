@@ -7,8 +7,9 @@ package com.wd.doctor.bean;
  * function:查询用户详细信息
  */
 public class FindUserInfoBean {
+
     /**
-     * result : {"age":0,"height":0,"nickName":"Tu_EHSDN","sex":1,"userHeadPic":"http://172.17.8.100/images/health/user/head_pic/default/default_head_3.jpg","userId":2,"weight":0}
+     * result : {"age":0,"height":0,"nickName":"bh_VXCEF","sex":1,"userHeadPic":"http://172.17.8.100/images/health/user/head_pic/default/default_head_4.jpg","userId":432,"weight":0}
      * message : 查询成功
      * status : 0000
      */
@@ -45,10 +46,10 @@ public class FindUserInfoBean {
         /**
          * age : 0
          * height : 0
-         * nickName : Tu_EHSDN
+         * nickName : bh_VXCEF
          * sex : 1
-         * userHeadPic : http://172.17.8.100/images/health/user/head_pic/default/default_head_3.jpg
-         * userId : 2
+         * userHeadPic : http://172.17.8.100/images/health/user/head_pic/default/default_head_4.jpg
+         * userId : 432
          * weight : 0
          */
 
