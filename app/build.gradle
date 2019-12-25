@@ -10,6 +10,17 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            //选择要添加的对应cpu类型的.so库。
+            abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
+            // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
+        }
+
+        manifestPlaceholders = [
+                JPUSH_PKGNAME : applicationId,
+                JPUSH_APPKEY : "b5f102cc307091e167ce52e0", //JPush上注册的包名对应的appkey.
+                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+        ]
     }
     buildTypes {
         release {
@@ -60,7 +71,9 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.1.1'
     implementation project(path: ':mvplibrary')
     implementation 'com.rmtheis:tess-two:9.0.0'
+    implementation 'cn.jiguang.sdk:jmessage:2.9.0'  // 此处以JMessage 2.9.0 版本为例。
+    implementation 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
     implementation files('lib\\ocr-sdk.jar')
-    compile project(path: ':orc_library')
+    implementation project(path: ':orc_library')
 
 }

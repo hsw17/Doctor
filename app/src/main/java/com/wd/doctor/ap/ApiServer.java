@@ -10,6 +10,8 @@ import com.wd.doctor.bean.FindDepartmentBean;
 import com.wd.doctor.bean.FindDoctorBankCardByIdBean;
 import com.wd.doctor.bean.FindDoctorByIdBean;
 import com.wd.doctor.bean.FindDoctorWalletBean;
+import com.wd.doctor.bean.FindHistoryInquiryRecordBean;
+import com.wd.doctor.bean.FindInquiryRecordListBean;
 import com.wd.doctor.bean.FindJobTitleListBean;
 import com.wd.doctor.bean.FindSickCircleInfoBean;
 import com.wd.doctor.bean.FindSickCircleListBean;
@@ -86,4 +88,8 @@ public interface ApiServer {
     Observable<UploadImagePicBean> doFindUploadImagePic(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId,@Part MultipartBody.Part imagePic);
     @GET("doctor/verify/v1/findDoctorBankCardById")
     Observable<FindDoctorBankCardByIdBean> doFindDoctorBankCardById(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId);
+    @GET("doctor/inquiry/verify/v1/findInquiryRecordList")
+    Observable<FindInquiryRecordListBean> doFindInquiryRecordList(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId);
+    @GET("doctor/inquiry/verify/v1/findHistoryInquiryRecord")
+    Observable<FindHistoryInquiryRecordBean> doFindHistoryInquiryRecord(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId,@Query("page") String page,@Query("count") String count);
 }

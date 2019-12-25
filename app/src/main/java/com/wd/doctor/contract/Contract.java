@@ -62,6 +62,10 @@ public interface Contract {
         void doFindUploadImagePic(String doctorId,String sessionId, MultipartBody.Part imagePic);
         //查询银行卡
         void doFindDoctorBankCardById(String doctorId,String sessionId);
+        //查询医生的问诊记录列表
+        void doFindInquiryRecordList(String doctorId,String sessionId);
+        //查询医生历史问诊记录列表
+        void doFindHistoryInquiryRecord(String doctorId,String sessionId,String page,String count);
     }
 
     //M层
@@ -85,6 +89,8 @@ public interface Contract {
         void doBindDoctorBandCard(String doctorId,String sessionId,String bankCardNumber,String bankName,String bankCardType,IModelCallback iModelCallback);
         void doFindUploadImagePic(String doctorId,String sessionId, MultipartBody.Part imagePic,IModelCallback iModelCallback);
         void doFindDoctorBankCardById(String doctorId,String sessionId,IModelCallback iModelCallback);
+        void doFindInquiryRecordList(String doctorId,String sessionId,IModelCallback iModelCallback);
+        void doFindHistoryInquiryRecord(String doctorId,String sessionId,String page,String count,IModelCallback iModelCallback);
         interface IModelCallback{
             void onSuccess(Object obj);
             void onSuccessOne(Object one);

@@ -9,6 +9,8 @@ import com.wd.doctor.bean.FindDepartmentBean;
 import com.wd.doctor.bean.FindDoctorBankCardByIdBean;
 import com.wd.doctor.bean.FindDoctorByIdBean;
 import com.wd.doctor.bean.FindDoctorWalletBean;
+import com.wd.doctor.bean.FindHistoryInquiryRecordBean;
+import com.wd.doctor.bean.FindInquiryRecordListBean;
 import com.wd.doctor.bean.FindJobTitleListBean;
 import com.wd.doctor.bean.FindSickCircleInfoBean;
 import com.wd.doctor.bean.FindSickCircleListBean;
@@ -346,10 +348,44 @@ public class IModel implements Contract.IModel {
     public void doFindDoctorBankCardById(String doctorId, String sessionId,IModelCallback iModelCallback) {
         HttpUtil.getInstance().getApiServer().doFindDoctorBankCardById(doctorId,sessionId)
                 .compose(CommonSchedulers.io2main())
-                .subscribe(new BlockingBaseObserver<FindDoctorBankCardByIdBean>() {
+                .subscribe(new CommonObserver<FindDoctorBankCardByIdBean>() {
                     @Override
                     public void onNext(FindDoctorBankCardByIdBean findDoctorBankCardByIdBean) {
                         iModelCallback.onSuccessOne(findDoctorBankCardByIdBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void doFindInquiryRecordList(String doctorId, String sessionId, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doFindInquiryRecordList(doctorId,sessionId)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<FindInquiryRecordListBean>() {
+                    @Override
+                    public void onNext(FindInquiryRecordListBean findInquiryRecordListBean) {
+                        iModelCallback.onSuccess(findInquiryRecordListBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void doFindHistoryInquiryRecord(String doctorId, String sessionId, String page, String count, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doFindHistoryInquiryRecord(doctorId,sessionId,page,count)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<FindHistoryInquiryRecordBean>() {
+                    @Override
+                    public void onNext(FindHistoryInquiryRecordBean findHistoryInquiryRecordBean) {
+                        iModelCallback.onSuccess(findHistoryInquiryRecordBean);
                     }
 
                     @Override
