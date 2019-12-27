@@ -7,6 +7,7 @@ import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.bean.FindDoctorByIdBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
@@ -20,9 +21,9 @@ import butterknife.OnClick;
 public class ManageActivity extends BaseActivity<Presenter> implements Contract.IView {
 
     public static final String TAG = "ManageActivity";
-    @BindView(R.id.sView_imagePic_manage)
+    @BindView(R2.id.sView_imagePic_manage)
     ImageView sViewImagePicManage;
-    @BindView(R.id.linear_view)
+    @BindView(R2.id.linear_view)
     RelativeLayout linearView;
 
     @Override

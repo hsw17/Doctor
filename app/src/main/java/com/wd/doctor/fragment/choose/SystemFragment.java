@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.widget.LinearLayout;
 
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.activity.manage.ManageActivity;
 import com.wd.doctor.adapter.MyViewChooseImagePager;
 import com.wd.doctor.bean.ChooseImagePicBean;
@@ -28,9 +29,9 @@ import butterknife.OnClick;
  * function:
  */
 public class SystemFragment extends BaseFragment<Presenter> implements Contract.IView {
-    @BindView(R.id.view_choose_image_pager)
+    @BindView(R2.id.view_choose_image_pager)
     ViewPager viewChooseImagePager;
-    @BindView(R.id.tv_ok_choose_image_pic)
+    @BindView(R2.id.tv_ok_choose_image_pic)
     LinearLayout tvOkChooseImagePic;
     public static final String TAG = "SystemFragment";
     private String doctorId;

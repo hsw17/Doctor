@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.bean.FindDoctorByIdBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
@@ -18,17 +19,17 @@ import butterknife.OnClick;
 public class DataActivity extends BaseActivity<Presenter> implements Contract.IView {
 
     public static final String TAG = "DataActivity";
-    @BindView(R.id.tv_name_data)
+    @BindView(R2.id.tv_name_data)
     TextView tvNameData;
-    @BindView(R.id.tv_hospital_data)
+    @BindView(R2.id.tv_hospital_data)
     TextView tvHospitalData;
-    @BindView(R.id.tv_department_data)
+    @BindView(R2.id.tv_department_data)
     TextView tvDepartmentData;
-    @BindView(R.id.tv_jobTitle_data)
+    @BindView(R2.id.tv_jobTitle_data)
     TextView tvJobTitleData;
-    @BindView(R.id.tv_personal_data)
+    @BindView(R2.id.tv_personal_data)
     TextView tvPersonalData;
-    @BindView(R.id.tv_goodField_data)
+    @BindView(R2.id.tv_goodField_data)
     TextView tvGoodFieldData;
 
     @Override

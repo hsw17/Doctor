@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.activity.answer.FindSickCircleInfoActivity;
 import com.wd.doctor.adapter.MyRecViewFindSickCircleAdapter;
 import com.wd.doctor.bean.FindSickCircleListBean;
@@ -29,7 +30,7 @@ public class AllFragment extends BaseFragment<Presenter> implements Contract.IVi
     private String page = "1";
     private String count = "10";
     public static final String TAG = "AllFragment";
-    @BindView(R.id.rec_all_view)
+    @BindView(R2.id.rec_all_view)
     RecyclerView recAllView;
 
     @Override

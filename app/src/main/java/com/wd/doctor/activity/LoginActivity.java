@@ -14,6 +14,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.bean.FindSystemImagePicBean;
 import com.wd.doctor.bean.LoginBean;
 import com.wd.doctor.contract.Contract;
@@ -26,6 +27,7 @@ import com.wd.mvplibrary.utils.PwdAndEmail;
 import com.wd.mvplibrary.utils.SPUtils;
 import com.wd.mvplibrary.utils.ToastUtils;
 
+import java.time.Year;
 import java.util.HashMap;
 import java.util.List;
 
@@ -36,11 +38,11 @@ import butterknife.OnClick;
 public class LoginActivity extends BaseActivity<Presenter> implements Contract.IView {
 
     public static final String TAG = "LoginActivity";
-    @BindView(R.id.et_email_login)
+    @BindView(R2.id.et_email_login)
     EditText etEmailLogin;
-    @BindView(R.id.et_pwd_login)
+    @BindView(R2.id.et_pwd_login)
     EditText etPwdLogin;
-    @BindView(R.id.tg_btn_eye)
+    @BindView(R2.id.tg_btn_eye)
     ToggleButton tgBtnEye;
     private List<FindSystemImagePicBean.ResultBean> resultBean;
 
@@ -141,6 +143,8 @@ public class LoginActivity extends BaseActivity<Presenter> implements Contract.I
         SPUtils user = new SPUtils(this, "user");
         user.SharedPreferenceput("doctorId",loginBean.getResult().getId()+"");
         user.SharedPreferenceput("sessionId",loginBean.getResult().getSessionId());
+        user.SharedPreferenceput("userName",loginBean.getResult().getUserName());
+        user.SharedPreferenceput("jiGuangPwd",loginBean.getResult().getJiGuangPwd());
         SPUtils remember = new SPUtils(this, "remember");
         remember.SharedPreferenceput("email",etEmailLogin.getText().toString());
         remember.SharedPreferenceput("pwd",etPwdLogin.getText().toString());

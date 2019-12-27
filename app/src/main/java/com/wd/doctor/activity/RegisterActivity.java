@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ToggleButton;
 
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.bean.SendEmailCodeBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
@@ -33,17 +34,17 @@ import butterknife.OnClick;
 public class RegisterActivity extends BaseActivity<Presenter> implements Contract.IView {
 
     public static final String TAG = "RegisterActivity";
-    @BindView(R.id.et_email_register)
+    @BindView(R2.id.et_email_register)
     EditText etEmailRegister;
-    @BindView(R.id.et_pwd_register)
+    @BindView(R2.id.et_pwd_register)
     EditText etPwdRegister;
-    @BindView(R.id.tg_btn_pwd_eye)
+    @BindView(R2.id.tg_btn_pwd_eye)
     ToggleButton tgBtnPwdEye;
-    @BindView(R.id.et_pwd1_register)
+    @BindView(R2.id.et_pwd1_register)
     EditText etPwd1Register;
-    @BindView(R.id.tg_btn_pwd1_eye)
+    @BindView(R2.id.tg_btn_pwd1_eye)
     ToggleButton tgBtnPwd1Eye;
-    @BindView(R.id.et_code_register)
+    @BindView(R2.id.et_code_register)
     EditText etCodeRegister;
 
     @Override

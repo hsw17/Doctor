@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.bean.ApplyJoinBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
@@ -31,9 +32,9 @@ import butterknife.OnClick;
 public class Register2Activity extends BaseActivity<Presenter> implements Contract.IView {
 
     public static final String TAG = "Register2Activity";
-    @BindView(R.id.et_personalProfile_register2)
+    @BindView(R2.id.et_personalProfile_register2)
     EditText etPersonalProfileRegister2;
-    @BindView(R.id.et_goodField_register2)
+    @BindView(R2.id.et_goodField_register2)
     EditText etGoodFieldRegister2;
 
     @Override

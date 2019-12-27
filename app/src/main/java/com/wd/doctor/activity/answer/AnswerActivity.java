@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.google.android.material.tabs.TabLayout;
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.adapter.MyAdapter;
 import com.wd.doctor.bean.FindDepartmentBean;
 import com.wd.doctor.contract.Contract;
@@ -24,9 +25,9 @@ public class AnswerActivity extends BaseActivity<Presenter> implements Contract.
 
     private ArrayList<String> tab = new ArrayList<>();
     public static final String TAG = "AnswerActivity";
-    @BindView(R.id.tab_layout_answer)
+    @BindView(R2.id.tab_layout_answer)
     TabLayout tabLayoutAnswer;
-    @BindView(R.id.view_pager_answer)
+    @BindView(R2.id.view_pager_answer)
     ViewPager viewPagerAnswer;
 
     @Override

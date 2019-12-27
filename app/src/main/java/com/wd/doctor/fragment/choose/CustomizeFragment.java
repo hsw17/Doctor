@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.activity.manage.ManageActivity;
 import com.wd.doctor.bean.UploadImagePicBean;
 import com.wd.doctor.contract.Contract;
@@ -44,13 +45,13 @@ import static android.app.Activity.RESULT_CANCELED;
  * function:
  */
 public class CustomizeFragment extends BaseFragment<Presenter> implements Contract.IView {
-    @BindView(R.id.linear_view)
+    @BindView(R2.id.linear_view)
     RelativeLayout linearView;
-    @BindView(R.id.linear_customize)
+    @BindView(R2.id.linear_customize)
     LinearLayout linearCustomize;
-    @BindView(R.id.relative_customize)
+    @BindView(R2.id.relative_customize)
     RelativeLayout relativeCustomize;
-    @BindView(R.id.img_customize)
+    @BindView(R2.id.img_customize)
     ImageView imgCustomize;
     private String sessionId;
     private String doctorId;

@@ -4,18 +4,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.adapter.MyBindDoctorBankCardAdapter;
 import com.wd.doctor.bean.FindDoctorBankCardByIdBean;
+import com.wd.doctor.bean.FindDoctorIdCardInfoBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
+import com.wd.doctor.util.RsaCoder;
 import com.wd.mvplibrary.base.BaseActivity;
 import com.wd.mvplibrary.utils.Logger;
 import com.wd.mvplibrary.utils.SPUtils;
-
-import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -25,21 +27,33 @@ import butterknife.OnClick;
 
 public class BindDoctorActivity extends BaseActivity<Presenter> implements Contract.IView {
 
-    @BindView(R.id.img_id_card)
+    @BindView(R2.id.img_id_card)
     ImageView imgIdCard;
-    @BindView(R.id.rec_id_card_view)
-    RecyclerView recIdCardView;
-    @BindView(R.id.img_bank_card)
+    @BindView(R2.id.rec_id_card_view)
+    LinearLayout recIdCardView;
+    @BindView(R2.id.img_bank_card)
     ImageView imgBankCard;
-    @BindView(R.id.tv_bank_card)
+    @BindView(R2.id.tv_bank_card)
     TextView tvBankCard;
-    @BindView(R.id.tv_id_card)
+    @BindView(R2.id.tv_id_card)
     TextView tvIdCard;
-    @BindView(R.id.rec_bank_card_view)
+    @BindView(R2.id.rec_bank_card_view)
     RecyclerView recBankCardView;
+    @BindView(R.id.tv_name_id_card)
+    TextView tvNameIdCard;
+    @BindView(R.id.tv_sex_id_card)
+    TextView tvSexIdCard;
+    @BindView(R.id.tv_nation_id_card)
+    TextView tvNationIdCard;
+    @BindView(R.id.tv_idNumber_id_card)
+    TextView tvIdNumberIdCard;
     private int whetherBindBankCard;
     private int whetherBindIdCard;
     public static final String TAG = "BindDoctorActivity";
+    private String name;
+    private String sex;
+    private String nation;
+    private String idNumber;
 
     @Override
     protected Presenter providePresenter() {
@@ -60,18 +74,21 @@ public class BindDoctorActivity extends BaseActivity<Presenter> implements Contr
         Intent intent = getIntent();
         whetherBindIdCard = intent.getIntExtra("whetherBindIdCard", 0);
         whetherBindBankCard = intent.getIntExtra("whetherBindBankCard", 0);
-        Logger.e("aaa",whetherBindIdCard+"");
-        Logger.e("bbb",whetherBindBankCard+"");
-        if (whetherBindIdCard==2){
+        Logger.e("aaa", whetherBindIdCard + "");
+        Logger.e("bbb", whetherBindBankCard + "");
+        if (whetherBindIdCard == 2) {
             imgIdCard.setImageResource(R.mipmap.id_card_front);
-        }else if (whetherBindIdCard==1){
+        } else if (whetherBindIdCard == 1) {
             tvIdCard.setVisibility(View.GONE);
+            presenter.doFindDoctorIdCardInfo(doctorId, sessionId);
+            imgIdCard.setImageResource(R.mipmap.id_card);
+            recIdCardView.setVisibility(View.VISIBLE);
         }
-        if (whetherBindBankCard==2) {
+        if (whetherBindBankCard == 2) {
             imgBankCard.setImageResource(R.mipmap.bank_card_front);
-        }else if (whetherBindBankCard==1){
+        } else if (whetherBindBankCard == 1) {
             tvBankCard.setVisibility(View.GONE);
-            presenter.doFindDoctorBankCardById(doctorId,sessionId);
+            presenter.doFindDoctorBankCardById(doctorId, sessionId);
             imgBankCard.setImageResource(R.mipmap.bank_card);
             recBankCardView.setVisibility(View.VISIBLE);
         }
@@ -81,20 +98,41 @@ public class BindDoctorActivity extends BaseActivity<Presenter> implements Contr
     @Override
     public void onSuccessOne(Object one) {
         FindDoctorBankCardByIdBean findDoctorBankCardByIdBean = (FindDoctorBankCardByIdBean) one;
-        Logger.e(TAG,findDoctorBankCardByIdBean.getMessage()+"findDoctorBankCardByIdBean");
+        Logger.e(TAG, findDoctorBankCardByIdBean.getMessage() + "findDoctorBankCardByIdBean");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         recBankCardView.setLayoutManager(linearLayoutManager);
         FindDoctorBankCardByIdBean.ResultBean result = findDoctorBankCardByIdBean.getResult();
         MyBindDoctorBankCardAdapter myBindDoctorBankCardAdapter = new MyBindDoctorBankCardAdapter(result, this);
         recBankCardView.setAdapter(myBindDoctorBankCardAdapter);
     }
+
     @Override
     public void onSuccess(Object obj) {
 
     }
+
     @Override
     public void onSuccessTwo(Object two) {
-
+        FindDoctorIdCardInfoBean findDoctorIdCardInfoBean = (FindDoctorIdCardInfoBean) two;
+        Logger.e(TAG, findDoctorIdCardInfoBean.getMessage() + "findDoctorIdCardInfoBean");
+        /*LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recIdCardView.setLayoutManager(linearLayoutManager);
+        FindDoctorIdCardInfoBean.ResultBean result = findDoctorIdCardInfoBean.getResult();
+        MyBindDoctorIdCardAdapter myBindDoctorIdCardAdapter = new MyBindDoctorIdCardAdapter(result, this);
+        recIdCardView.setAdapter(myBindDoctorIdCardAdapter);*/
+        FindDoctorIdCardInfoBean.ResultBean result = findDoctorIdCardInfoBean.getResult();
+        try {
+            name = RsaCoder.decryptByPublicKey(result.getName());
+            sex = RsaCoder.decryptByPublicKey(result.getSex());
+            nation = RsaCoder.decryptByPublicKey(result.getNation());
+            idNumber = RsaCoder.decryptByPublicKey(result.getIdNumber());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        tvNameIdCard.setText(name);
+        tvSexIdCard.setText(sex);
+        tvNationIdCard.setText(nation+"族");
+        tvIdNumberIdCard.setText(idNumber);
     }
 
     @Override

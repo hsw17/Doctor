@@ -56,10 +56,15 @@ public class MyRecViewInquiryAdapter extends RecyclerView.Adapter<RecyclerView.V
                 e.printStackTrace();
             }
             ((MyViewHolder) holder).tv_inquiryTime_inquiry.setText(InquiryTime);
-
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    click.onRecordId(resultBean.getRecordId(),resultBean.getUserId());
+                }
+            });
+            click.onStatus(resultBean.getStatus());
         }
     }
-
     @Override
     public int getItemCount() {
         return list.size();
@@ -76,8 +81,15 @@ public class MyRecViewInquiryAdapter extends RecyclerView.Adapter<RecyclerView.V
             tv_inquiryTime_inquiry = itemView.findViewById(R.id.tv_inquiryTime_inquiry);
         }
     }
+
+    private click click;
+
+    public void setClick(MyRecViewInquiryAdapter.click click) {
+        this.click = click;
+    }
+
     public interface click{
         void onStatus(int status);
-        void onInquiryId(int inquiryId);
+        void onRecordId(int RecordId,int userId);
     }
 }

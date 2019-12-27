@@ -10,4 +10,6 @@ public interface Constant {
     String BASE_WEB_URL = "http://mobile.bwstudent.com/health/";
 
     String SUCCESS_CODE = "0000";
+    String TYPE_ONE = "1";
+    String TYPE_TWO = "2";
 }

@@ -5,11 +5,15 @@ import com.wd.doctor.bean.BindDoctorBankCardBean;
 import com.wd.doctor.bean.BindDoctorIdCardBean;
 import com.wd.doctor.bean.CheckCodeBean;
 import com.wd.doctor.bean.ChooseImagePicBean;
+import com.wd.doctor.bean.DrawCashBean;
 import com.wd.doctor.bean.FindDepartmentBean;
 import com.wd.doctor.bean.FindDoctorBankCardByIdBean;
 import com.wd.doctor.bean.FindDoctorByIdBean;
+import com.wd.doctor.bean.FindDoctorIdCardInfoBean;
+import com.wd.doctor.bean.FindDoctorIncomeRecordListBean;
 import com.wd.doctor.bean.FindDoctorWalletBean;
 import com.wd.doctor.bean.FindHistoryInquiryRecordBean;
+import com.wd.doctor.bean.FindInquiryDetailsListBean;
 import com.wd.doctor.bean.FindInquiryRecordListBean;
 import com.wd.doctor.bean.FindJobTitleListBean;
 import com.wd.doctor.bean.FindSickCircleInfoBean;
@@ -17,6 +21,7 @@ import com.wd.doctor.bean.FindSickCircleListBean;
 import com.wd.doctor.bean.FindSystemImagePicBean;
 import com.wd.doctor.bean.LoginBean;
 import com.wd.doctor.bean.PublishCommentBean;
+import com.wd.doctor.bean.PushMessageBean;
 import com.wd.doctor.bean.ResetUserPwdBean;
 import com.wd.doctor.bean.SearchSickCircleBean;
 import com.wd.doctor.bean.SendEmailCodeBean;
@@ -386,6 +391,91 @@ public class IModel implements Contract.IModel {
                     @Override
                     public void onNext(FindHistoryInquiryRecordBean findHistoryInquiryRecordBean) {
                         iModelCallback.onSuccess(findHistoryInquiryRecordBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void doFindInquiryDetailsList(String doctorId, String sessionId, String inquiryId, String page, String count, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doFindInquiryDetailsList(doctorId,sessionId,inquiryId,page,count)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<FindInquiryDetailsListBean>() {
+                    @Override
+                    public void onNext(FindInquiryDetailsListBean findInquiryDetailsListBean) {
+                        iModelCallback.onSuccess(findInquiryDetailsListBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void doPushMessage(String doctorId, String sessionId, String inquiryId, String content, String type, String userId, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doPushMessage(doctorId,sessionId,inquiryId,content,type,userId)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<PushMessageBean>() {
+                    @Override
+                    public void onNext(PushMessageBean pushMessageBean) {
+                        iModelCallback.onSuccessOne(pushMessageBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void doFindDoctorIncomeRecordList(String doctorId, String sessionId, String page, String count, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doFindDoctorIncomeRecordList(doctorId,sessionId,page,count)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<FindDoctorIncomeRecordListBean>() {
+                    @Override
+                    public void onNext(FindDoctorIncomeRecordListBean findDoctorIncomeRecordListBean) {
+                        iModelCallback.onSuccessOne(findDoctorIncomeRecordListBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void doDrawCash(String doctorId, String sessionId, String money, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doDrawCash(doctorId,sessionId,money)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<DrawCashBean>() {
+                    @Override
+                    public void onNext(DrawCashBean drawCashBean) {
+                        iModelCallback.onSuccessTwo(drawCashBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void doFindDoctorIdCardInfo(String doctorId, String sessionId, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doFindDoctorIdCardInfo(doctorId,sessionId)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<FindDoctorIdCardInfoBean>() {
+                    @Override
+                    public void onNext(FindDoctorIdCardInfoBean findDoctorIdCardInfoBean) {
+                        iModelCallback.onSuccessTwo(findDoctorIdCardInfoBean);
                     }
 
                     @Override

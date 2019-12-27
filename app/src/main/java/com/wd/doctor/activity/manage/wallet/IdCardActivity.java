@@ -28,6 +28,7 @@ import com.baidu.ocr.ui.camera.CameraActivity;
 import com.baidu.ocr.ui.camera.CameraNativeHelper;
 import com.baidu.ocr.ui.camera.CameraView;
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.bean.BindDoctorIdCard;
 import com.wd.doctor.bean.BindDoctorIdCardBean;
 import com.wd.doctor.contract.Contract;
@@ -56,27 +57,27 @@ import retrofit2.http.Body;
 public class IdCardActivity extends BaseActivity<Presenter> implements Contract.IView {
 
 
-    @BindView(R.id.img_id_card_back)
+    @BindView(R2.id.img_id_card_back)
     ImageView imgIdCardBack;
-    @BindView(R.id.img_id_card_front)
+    @BindView(R2.id.img_id_card_front)
     ImageView imgIdCardFront;
-    @BindView(R.id.img_back)
+    @BindView(R2.id.img_back)
     ImageView imgBack;
-    @BindView(R.id.img_camera_id_card_front)
+    @BindView(R2.id.img_camera_id_card_front)
     ImageView imgCameraIdCardFront;
-    @BindView(R.id.img_camera_id_card_back)
+    @BindView(R2.id.img_camera_id_card_back)
     ImageView imgCameraIdCardBack;
-    @BindView(R.id.btn_next_id_card)
+    @BindView(R2.id.btn_next_id_card)
     Button btnNextIdCard;
-    @BindView(R.id.btn_finish_id_card)
+    @BindView(R2.id.btn_finish_id_card)
     Button btnFinishIdCard;
-    @BindView(R.id.linear_id_card_front)
+    @BindView(R2.id.linear_id_card_front)
     LinearLayout linearIdCardFront;
-    @BindView(R.id.linear_id_card_back)
+    @BindView(R2.id.linear_id_card_back)
     LinearLayout linearIdCardBack;
-    @BindView(R.id.img_cuowu_front)
+    @BindView(R2.id.img_cuowu_front)
     ImageView imgCuowuFront;
-    @BindView(R.id.img_cuowu_back)
+    @BindView(R2.id.img_cuowu_back)
     ImageView imgCuowuBack;
     public static final String TAG = "IdCardActivity";
     private static final int REQUEST_CODE_CAMERA = 103;

@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.activity.answer.AnswerActivity;
 import com.wd.doctor.activity.inquiry.InquiryActivity;
 import com.wd.doctor.activity.manage.ManageActivity;
@@ -20,22 +21,22 @@ import butterknife.OnClick;
 public class ShowActivity extends BaseActivity<Presenter> {
 
 
-    @BindView(R.id.tv_name_show)
+    @BindView(R2.id.tv_name_show)
     TextView tvNameShow;
-    @BindView(R.id.tv_inauguralHospital_show)
+    @BindView(R2.id.tv_inauguralHospital_show)
     TextView tvInauguralHospitalShow;
-    @BindView(R.id.tv_jobTitle_show)
+    @BindView(R2.id.tv_jobTitle_show)
     TextView tvJobTitleShow;
-    @BindView(R.id.tv_departmentName_show)
+    @BindView(R2.id.tv_departmentName_show)
     TextView tvDepartmentNameShow;
-    @BindView(R.id.tv_inquiry_show)
+    @BindView(R2.id.tv_inquiry_show)
     RelativeLayout tvInquiryShow;
-    @BindView(R.id.tv_answer_show)
+    @BindView(R2.id.tv_answer_show)
     RelativeLayout tvAnswerShow;
 
-    @BindView(R.id.tv_manage_show)
+    @BindView(R2.id.tv_manage_show)
     RelativeLayout tvManageShow;
-    @BindView(R.id.sView_show)
+    @BindView(R2.id.sView_show)
     ImageView sViewShow;
 
     @Override

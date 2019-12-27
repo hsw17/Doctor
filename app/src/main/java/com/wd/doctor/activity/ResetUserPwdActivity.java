@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.bean.ResetUserPwdBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
@@ -23,9 +24,9 @@ import butterknife.OnClick;
 public class ResetUserPwdActivity extends BaseActivity<Presenter> implements Contract.IView {
 
     public static final String TAG = "ResetUserPwdActivity";
-    @BindView(R.id.tv_pwd1)
+    @BindView(R2.id.tv_pwd1)
     EditText tvPwd1;
-    @BindView(R.id.tv_pwd2)
+    @BindView(R2.id.tv_pwd2)
     EditText tvPwd2;
     private String email;
 

@@ -5,7 +5,10 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.activity.manage.wallet.BindDoctorActivity;
+import com.wd.doctor.adapter.MyRecViewIncomeRecordAdapter;
+import com.wd.doctor.bean.FindDoctorIncomeRecordListBean;
 import com.wd.doctor.bean.FindDoctorWalletBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
@@ -13,6 +16,9 @@ import com.wd.mvplibrary.base.BaseActivity;
 import com.wd.mvplibrary.utils.Logger;
 import com.wd.mvplibrary.utils.SPUtils;
 
+import java.util.List;
+
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -20,11 +26,11 @@ import butterknife.OnClick;
 public class WalletActivity extends BaseActivity<Presenter> implements Contract.IView {
 
     public static final String TAG = "WalletActivity";
-    @BindView(R.id.tv_bindDoctor)
+    @BindView(R2.id.tv_bindDoctor)
     TextView tvBindDoctor;
-    @BindView(R.id.tv_balance_wallet)
+    @BindView(R2.id.tv_balance_wallet)
     TextView tvBalanceWallet;
-    @BindView(R.id.rec_wallet_view)
+    @BindView(R2.id.rec_wallet_view)
     RecyclerView recWalletView;
     private int whetherBindBankCard;
     private int whetherBindIdCard;
@@ -46,6 +52,8 @@ public class WalletActivity extends BaseActivity<Presenter> implements Contract.
         String doctorId = (String) user.getSharedPreference("doctorId", "");
         String sessionId = (String) user.getSharedPreference("sessionId", "");
         presenter.doFindDoctorWallet(doctorId,sessionId);
+        presenter.doFindDoctorIncomeRecordList(doctorId,sessionId,"1","10");
+
     }
 
     @Override
@@ -56,11 +64,22 @@ public class WalletActivity extends BaseActivity<Presenter> implements Contract.
         tvBalanceWallet.setText(result.getBalance()+"");
         whetherBindBankCard = result.getWhetherBindBankCard();
         whetherBindIdCard = result.getWhetherBindIdCard();
+        if (whetherBindBankCard==1&&whetherBindIdCard==1) {
+            tvBindDoctor.setText("查看绑定");
+        }else {
+            tvBindDoctor.setText("去绑定");
+        }
     }
 
     @Override
     public void onSuccessOne(Object one) {
-
+        FindDoctorIncomeRecordListBean findDoctorIncomeRecordListBean = (FindDoctorIncomeRecordListBean) one;
+        Logger.e(TAG,findDoctorIncomeRecordListBean.getMessage());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        recWalletView.setLayoutManager(linearLayoutManager);
+        List<FindDoctorIncomeRecordListBean.ResultBean> result = findDoctorIncomeRecordListBean.getResult();
+        MyRecViewIncomeRecordAdapter myRecViewIncomeRecordAdapter = new MyRecViewIncomeRecordAdapter(result, this);
+        recWalletView.setAdapter(myRecViewIncomeRecordAdapter);
     }
 
     @Override

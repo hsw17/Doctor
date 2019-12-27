@@ -3,6 +3,7 @@ package com.wd.doctor.activity.manage;
 import android.widget.RadioGroup;
 
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.adapter.MyFragmentChooseAdapter;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.fragment.choose.CustomizeFragment;
@@ -20,9 +21,9 @@ import butterknife.BindView;
 public class ChooseImagePicActivity extends BaseActivity<Presenter> {
 
     public static final String TAG = "ChooseImagePicActivity";
-    @BindView(R.id.view_pager)
+    @BindView(R2.id.view_pager)
     ViewPager viewPager;
-    @BindView(R.id.radio_group)
+    @BindView(R2.id.radio_group)
     RadioGroup radioGroup;
     private ArrayList<Fragment> list = new ArrayList<>();
 

@@ -16,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.bean.FindDepartmentBean;
 import com.wd.doctor.bean.FindJobTitleListBean;
 import com.wd.doctor.contract.Contract;
@@ -41,13 +42,13 @@ import butterknife.OnClick;
 public class Register1Activity extends BaseActivity<Presenter> implements Contract.IView {
 
     public static final String TAG = "Register1Activity";
-    @BindView(R.id.et_name_register1)
+    @BindView(R2.id.et_name_register1)
     EditText etNameRegister1;
-    @BindView(R.id.et_inauguralHospital_register1)
+    @BindView(R2.id.et_inauguralHospital_register1)
     EditText etInauguralHospitalRegister1;
-    @BindView(R.id.et_departmentName_register1)
+    @BindView(R2.id.et_departmentName_register1)
     TextView etDepartmentNameRegister1;
-    @BindView(R.id.et_jobTitle_register1)
+    @BindView(R2.id.et_jobTitle_register1)
     TextView etJobTitleRegister1;
 
     @Override

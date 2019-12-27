@@ -66,6 +66,16 @@ public interface Contract {
         void doFindInquiryRecordList(String doctorId,String sessionId);
         //查询医生历史问诊记录列表
         void doFindHistoryInquiryRecord(String doctorId,String sessionId,String page,String count);
+        //查询问诊聊天记录
+        void doFindInquiryDetailsList(String doctorId,String sessionId,String inquiryId,String page,String count);
+        //发送消息
+        void doPushMessage(String doctorId,String sessionId,String inquiryId,String content,String type,String userId);
+        //查询医生收支记录
+        void doFindDoctorIncomeRecordList(String doctorId,String sessionId,String page,String count);
+        //提现
+        void doDrawCash(String doctorId,String sessionId,String money);
+        //查询医生身份证信息
+        void doFindDoctorIdCardInfo(String doctorId,String sessionId);
     }
 
     //M层
@@ -91,6 +101,11 @@ public interface Contract {
         void doFindDoctorBankCardById(String doctorId,String sessionId,IModelCallback iModelCallback);
         void doFindInquiryRecordList(String doctorId,String sessionId,IModelCallback iModelCallback);
         void doFindHistoryInquiryRecord(String doctorId,String sessionId,String page,String count,IModelCallback iModelCallback);
+        void doFindInquiryDetailsList(String doctorId,String sessionId,String inquiryId,String page,String count,IModelCallback iModelCallback);
+        void doPushMessage(String doctorId,String sessionId,String inquiryId,String content,String type,String userId,IModelCallback iModelCallback);
+        void doFindDoctorIncomeRecordList(String doctorId,String sessionId,String page,String count,IModelCallback iModelCallback);
+        void doDrawCash(String doctorId,String sessionId,String money,IModelCallback iModelCallback);
+        void doFindDoctorIdCardInfo(String doctorId,String sessionId,IModelCallback iModelCallback);
         interface IModelCallback{
             void onSuccess(Object obj);
             void onSuccessOne(Object one);

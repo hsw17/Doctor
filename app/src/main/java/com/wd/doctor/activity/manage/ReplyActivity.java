@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.Switch;
 
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.presenter.Presenter;
 import com.wd.mvplibrary.base.BaseActivity;
 
@@ -14,7 +15,7 @@ import butterknife.OnClick;
 
 public class ReplyActivity extends BaseActivity<Presenter> {
 
-    @BindView(R.id.item_switch)
+    @BindView(R2.id.item_switch)
     Switch itemSwitch;
 
     @Override

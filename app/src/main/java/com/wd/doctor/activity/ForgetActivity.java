@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.bean.SendEmailCodeBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
@@ -21,9 +22,9 @@ import butterknife.OnClick;
 public class ForgetActivity extends BaseActivity<Presenter> implements Contract.IView {
 
     public static final String TAG = "ForgetActivity";
-    @BindView(R.id.new_email)
+    @BindView(R2.id.new_email)
     EditText newEmail;
-    @BindView(R.id.edit_code)
+    @BindView(R2.id.edit_code)
     EditText editCode;
     private String email;
     private String code;

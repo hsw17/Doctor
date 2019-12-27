@@ -22,6 +22,7 @@ import com.baidu.ocr.ui.camera.CameraActivity;
 import com.baidu.ocr.ui.camera.CameraNativeHelper;
 import com.baidu.ocr.ui.camera.CameraView;
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
 import com.wd.doctor.util.FileUtil;
@@ -36,17 +37,17 @@ import butterknife.OnClick;
 
 public class BankCradActivity extends BaseActivity<Presenter> implements Contract.IView {
 
-    @BindView(R.id.img_id_card_front)
+    @BindView(R2.id.img_id_card_front)
     ImageView imgIdCardFront;
-    @BindView(R.id.img_camera_bank_card)
+    @BindView(R2.id.img_camera_bank_card)
     ImageView imgCameraBankCard;
-    @BindView(R.id.linear_bank_card)
+    @BindView(R2.id.linear_bank_card)
     LinearLayout linearBankCard;
-    @BindView(R.id.btn_next_bank_card)
+    @BindView(R2.id.btn_next_bank_card)
     Button btnNextBankCard;
-    @BindView(R.id.btn_finish_bank_card)
+    @BindView(R2.id.btn_finish_bank_card)
     Button btnFinishBankCard;
-    @BindView(R.id.img_cuowu_front)
+    @BindView(R2.id.img_cuowu_front)
     ImageView imgCuowuFront;
 
     @Override

@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.adapter.MyRecViewFindSickCircleInfoAdapter;
 import com.wd.doctor.bean.FindSickCircleInfoBean;
 import com.wd.doctor.bean.PublishCommentBean;
@@ -29,21 +30,21 @@ import butterknife.OnClick;
 public class FindSickCircleInfoActivity extends BaseActivity<Presenter> implements Contract.IView {
 
     public static final String TAG = "FindSickCircleInfoActivity";
-    @BindView(R.id.tv_title_find_sick_info)
+    @BindView(R2.id.tv_title_find_sick_info)
     TextView tvTitleFindSickInfo;
-    @BindView(R.id.rec_find_sick_info_view)
+    @BindView(R2.id.rec_find_sick_info_view)
     RecyclerView recFindSickInfoView;
-    @BindView(R.id.tv_amount_find_sick_info)
+    @BindView(R2.id.tv_amount_find_sick_info)
     TextView tvAmountFindSickInfo;
-    @BindView(R.id.et_find_sick_info)
+    @BindView(R2.id.et_find_sick_info)
     EditText etFindSickInfo;
-    @BindView(R.id.linear1)
+    @BindView(R2.id.linear1)
     LinearLayout Linear1;
-    @BindView(R.id.linear2)
+    @BindView(R2.id.linear2)
     LinearLayout Linear2;
-    @BindView(R.id.tv_content_find_sick_circle_info)
+    @BindView(R2.id.tv_content_find_sick_circle_info)
     TextView tvContentFindSickCircleInfo;
-    @BindView(R.id.linear_find_sick_circle_info)
+    @BindView(R2.id.linear_find_sick_circle_info)
     LinearLayout linearFindSickCircleInfo;
     private String doctorId;
     private String sessionId;

@@ -1,11 +1,13 @@
 package com.wd.doctor.activity.inquiry;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.adapter.MyRecViewInquiryAdapter;
 import com.wd.doctor.bean.FindInquiryRecordListBean;
 import com.wd.doctor.contract.Contract;
@@ -24,11 +26,11 @@ import butterknife.OnClick;
 
 public class InquiryActivity extends BaseActivity<Presenter> implements Contract.IView {
 
-    @BindView(R.id.rec_inquiry_view)
+    @BindView(R2.id.rec_inquiry_view)
     RecyclerView recInquiryView;
-    @BindView(R.id.img_inquiry_view)
+    @BindView(R2.id.img_inquiry_view)
     ImageView imgInquiryView;
-    @BindView(R.id.tv_none)
+    @BindView(R2.id.tv_none)
     TextView tvNone;
     private String doctorId;
     private String sessionId;
@@ -57,11 +59,31 @@ public class InquiryActivity extends BaseActivity<Presenter> implements Contract
     public void onSuccess(Object obj) {
         FindInquiryRecordListBean findInquiryRecordListBean = (FindInquiryRecordListBean) obj;
         Logger.e(TAG,findInquiryRecordListBean.getMessage());
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        recInquiryView.setLayoutManager(linearLayoutManager);
-        List<FindInquiryRecordListBean.ResultBean> result = findInquiryRecordListBean.getResult();
-        MyRecViewInquiryAdapter myRecViewInquiryAdapter = new MyRecViewInquiryAdapter(result, this);
-        recInquiryView.setAdapter(myRecViewInquiryAdapter);
+        if (findInquiryRecordListBean.getResult().size()!=0) {
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            recInquiryView.setLayoutManager(linearLayoutManager);
+            List<FindInquiryRecordListBean.ResultBean> result = findInquiryRecordListBean.getResult();
+            MyRecViewInquiryAdapter myRecViewInquiryAdapter = new MyRecViewInquiryAdapter(result, this);
+            recInquiryView.setAdapter(myRecViewInquiryAdapter);
+            myRecViewInquiryAdapter.setClick(new MyRecViewInquiryAdapter.click() {
+                @Override
+                public void onStatus(int status) {
+
+                }
+
+                @Override
+                public void onRecordId(int RecordId, int userId) {
+                    Intent intent = new Intent(InquiryActivity.this, FindInquiryDetailsListActivity.class);
+                    intent.putExtra("RecordId",RecordId);
+                    intent.putExtra("userId",userId);
+                    startActivity(intent);
+                }
+            });
+        }else {
+            imgInquiryView.setImageResource(R.mipmap.none_bg);
+            tvNone.setText("嘤~空空如也");
+        }
+
     }
 
     @Override

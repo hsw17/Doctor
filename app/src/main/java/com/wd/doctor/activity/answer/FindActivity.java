@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.wd.doctor.R;
+import com.wd.doctor.R2;
 import com.wd.doctor.adapter.MyRecViewSearchSickCircleAdapter;
 import com.wd.doctor.bean.SearchSickCircleBean;
 import com.wd.doctor.contract.Contract;
@@ -32,19 +33,19 @@ import butterknife.OnClick;
 public class FindActivity extends BaseActivity<Presenter> implements Contract.IView {
 
     public static final String TAG = "FindActivity";
-    @BindView(R.id.et_find)
+    @BindView(R2.id.et_find)
     EditText etFind;
     @BindView(R.id.img_none_find)
     ImageView imgNoneFind;
     /*@BindView(R.id.rec_history_find)
     RecyclerView recHistoryFind;*/
-    @BindView(R.id.tv_history_one)
+    @BindView(R2.id.tv_history_one)
     TextView tvHistoryOne;
-    @BindView(R.id.linear1)
+    @BindView(R2.id.linear1)
     LinearLayout linear1;
-    @BindView(R.id.rec_searchSickCircle_view)
+    @BindView(R2.id.rec_searchSickCircle_view)
     RecyclerView recSearchSickCircleView;
-    @BindView(R.id.linear2)
+    @BindView(R2.id.linear2)
     LinearLayout linear2;
     private String keyWord;
     private ArrayList<String> list = new ArrayList<>();

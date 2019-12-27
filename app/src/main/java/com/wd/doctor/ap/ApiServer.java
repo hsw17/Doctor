@@ -6,11 +6,15 @@ import com.wd.doctor.bean.BindDoctorIdCard;
 import com.wd.doctor.bean.BindDoctorIdCardBean;
 import com.wd.doctor.bean.CheckCodeBean;
 import com.wd.doctor.bean.ChooseImagePicBean;
+import com.wd.doctor.bean.DrawCashBean;
 import com.wd.doctor.bean.FindDepartmentBean;
 import com.wd.doctor.bean.FindDoctorBankCardByIdBean;
 import com.wd.doctor.bean.FindDoctorByIdBean;
+import com.wd.doctor.bean.FindDoctorIdCardInfoBean;
+import com.wd.doctor.bean.FindDoctorIncomeRecordListBean;
 import com.wd.doctor.bean.FindDoctorWalletBean;
 import com.wd.doctor.bean.FindHistoryInquiryRecordBean;
+import com.wd.doctor.bean.FindInquiryDetailsListBean;
 import com.wd.doctor.bean.FindInquiryRecordListBean;
 import com.wd.doctor.bean.FindJobTitleListBean;
 import com.wd.doctor.bean.FindSickCircleInfoBean;
@@ -18,6 +22,7 @@ import com.wd.doctor.bean.FindSickCircleListBean;
 import com.wd.doctor.bean.FindSystemImagePicBean;
 import com.wd.doctor.bean.LoginBean;
 import com.wd.doctor.bean.PublishCommentBean;
+import com.wd.doctor.bean.PushMessageBean;
 import com.wd.doctor.bean.ResetUserPwdBean;
 import com.wd.doctor.bean.SearchSickCircleBean;
 import com.wd.doctor.bean.SendEmailCodeBean;
@@ -92,4 +97,15 @@ public interface ApiServer {
     Observable<FindInquiryRecordListBean> doFindInquiryRecordList(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId);
     @GET("doctor/inquiry/verify/v1/findHistoryInquiryRecord")
     Observable<FindHistoryInquiryRecordBean> doFindHistoryInquiryRecord(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId,@Query("page") String page,@Query("count") String count);
+    @GET("doctor/inquiry/verify/v1/findInquiryDetailsList")
+    Observable<FindInquiryDetailsListBean> doFindInquiryDetailsList(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId,@Query("inquiryId") String inquiryId,@Query("page") String page,@Query("count") String count);
+    @FormUrlEncoded
+    @POST("doctor/inquiry/verify/v1/pushMessage")
+    Observable<PushMessageBean> doPushMessage(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId,@Field("inquiryId") String inquiryId,@Field("content") String content,@Field("type") String type,@Field("userId") String userId);
+    @GET("doctor/verify/v1/findDoctorIncomeRecordList")
+    Observable<FindDoctorIncomeRecordListBean> doFindDoctorIncomeRecordList(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId,@Query("page") String page,@Query("count") String count);
+    @POST("doctor/verify/v1/drawCash")
+    Observable<DrawCashBean> doDrawCash(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId,@Query("money") String money);
+    @GET("doctor/verify/v1/findDoctorIdCardInfo")
+    Observable<FindDoctorIdCardInfoBean> doFindDoctorIdCardInfo(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId);
 }
