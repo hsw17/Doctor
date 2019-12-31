@@ -10,8 +10,9 @@ import java.util.List;
  */
 public class FindInquiryDetailsListBean {
 
+
     /**
-     * result : [{"askTime":1577258742000,"content":"我不怎么好","direction":2,"doctorHeadPic":"http://172.17.8.100/images/health/doctor/image_pic/default/default_image_pic.jpg","msgType":1,"userHeadPic":"http://172.17.8.100/images/health/user/head_pic/2019-12-23/IC143T20191223162428.jpg"}]
+     * result : [{"askTime":1577436549000,"content":"okok","direction":1,"doctorHeadPic":"http://172.17.8.100/images/health/doctor/image_pic/default/default_image_pic.jpg","msgType":1,"userHeadPic":"http://172.17.8.100/images/health/user/head_pic/2019-12-23/IC143T20191223162428.jpg"},{"askTime":1577436530000,"content":"111111","direction":2,"doctorHeadPic":"http://172.17.8.100/images/health/doctor/image_pic/default/default_image_pic.jpg","msgType":1,"userHeadPic":"http://172.17.8.100/images/health/user/head_pic/2019-12-23/IC143T20191223162428.jpg"}]
      * message : 查询成功
      * status : 0000
      */
@@ -46,9 +47,9 @@ public class FindInquiryDetailsListBean {
 
     public static class ResultBean {
         /**
-         * askTime : 1577258742000
-         * content : 我不怎么好
-         * direction : 2
+         * askTime : 1577436549000
+         * content : okok
+         * direction : 1
          * doctorHeadPic : http://172.17.8.100/images/health/doctor/image_pic/default/default_image_pic.jpg
          * msgType : 1
          * userHeadPic : http://172.17.8.100/images/health/user/head_pic/2019-12-23/IC143T20191223162428.jpg

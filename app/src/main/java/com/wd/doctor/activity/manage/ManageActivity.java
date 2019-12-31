@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import com.bumptech.glide.Glide;
 import com.wd.doctor.R;
 import com.wd.doctor.R2;
+import com.wd.doctor.activity.manage.history.HistoryActivity;
 import com.wd.doctor.bean.FindDoctorByIdBean;
 import com.wd.doctor.contract.Contract;
 import com.wd.doctor.presenter.Presenter;
@@ -90,6 +91,8 @@ public class ManageActivity extends BaseActivity<Presenter> implements Contract.
                 startActivity(intent);
                 break;
             case R.id.linear_history_manage:
+                Intent intent1 = new Intent(this, HistoryActivity.class);
+                startActivity(intent1);
                 break;
             case R.id.linear_wallet_manage:
                 Intent intent3 = new Intent(this, WalletActivity.class);

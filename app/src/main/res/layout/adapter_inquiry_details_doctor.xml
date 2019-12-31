@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+        <TextView
+            android:id="@+id/tv_time_details_doctor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/dp_10"
+            android:textColor="#999999"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_alignParentRight="true">
+        <TextView
+            android:background="#3087ae"
+            android:id="@+id/tv_content_doctor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_20"
+            android:paddingLeft="@dimen/dp_14"
+            android:paddingBottom="@dimen/dp_14"
+            android:paddingTop="@dimen/dp_14"
+            android:paddingRight="@dimen/dp_10"
+            android:textSize="@dimen/sp_12"
+            android:textColor="#ffffff"/>
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/sView_details_doctor"
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            app:roundAsCircle="true"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_20"/>
+    </LinearLayout>
+</RelativeLayout>

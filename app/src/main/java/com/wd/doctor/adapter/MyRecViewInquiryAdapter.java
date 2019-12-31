@@ -59,10 +59,10 @@ public class MyRecViewInquiryAdapter extends RecyclerView.Adapter<RecyclerView.V
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    click.onRecordId(resultBean.getRecordId(),resultBean.getUserId());
+                    click.onRecordId(resultBean.getRecordId(),resultBean.getUserId(),resultBean.getNickName());
                 }
             });
-            click.onStatus(resultBean.getStatus());
+
         }
     }
     @Override
@@ -89,7 +89,6 @@ public class MyRecViewInquiryAdapter extends RecyclerView.Adapter<RecyclerView.V
     }
 
     public interface click{
-        void onStatus(int status);
-        void onRecordId(int RecordId,int userId);
+        void onRecordId(int RecordId,int userId,String name);
     }
 }

@@ -18,7 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".activity.inquiry.FindInquiryDetailsListActivity"></activity>
+        <activity android:name=".activity.manage.history.FindUserInfoActivity"></activity>
+        <activity android:name=".activity.manage.wallet.DrawRecordListActivity" />
+        <activity android:name=".activity.manage.history.InquiryDetailsActivity" />
+        <activity android:name=".activity.manage.history.HistoryActivity" />
+        <activity android:name=".activity.manage.wallet.DrawCashActivity" />
+        <activity android:name=".activity.inquiry.FindInquiryDetailsListActivity" />
         <activity android:name=".activity.manage.ReplyActivity" />
         <activity android:name=".activity.manage.wallet.BankCradActivity" />
         <activity android:name=".activity.manage.wallet.IdCardActivity" />
@@ -47,17 +52,17 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".ap.MyService"
+        <service
+            android:name=".ap.MyService"
             android:process=":pushcore">
             <intent-filter>
                 <action android:name="cn.jiguang.user.service.action" />
             </intent-filter>
         </service>
-
         <service
             android:name="cn.jpush.android.service.PushService"
             android:process=":multiprocess"
-            tools:node="replace"></service>
+            tools:node="replace" />
     </application>
 
 </manifest>

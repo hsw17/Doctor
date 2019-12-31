@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.wd.doctor.R;
 import com.wd.doctor.R2;
 import com.wd.doctor.activity.manage.wallet.BindDoctorActivity;
+import com.wd.doctor.activity.manage.wallet.DrawCashActivity;
 import com.wd.doctor.adapter.MyRecViewIncomeRecordAdapter;
 import com.wd.doctor.bean.FindDoctorIncomeRecordListBean;
 import com.wd.doctor.bean.FindDoctorWalletBean;
@@ -109,7 +110,8 @@ public class WalletActivity extends BaseActivity<Presenter> implements Contract.
                 finish();
                 break;
             case R.id.btn_wallet:
-
+                Intent intent = new Intent(this, DrawCashActivity.class);
+                startActivity(intent);
                 break;
             case R.id.tv_bindDoctor:
                 Intent intent1 = new Intent(this, BindDoctorActivity.class);

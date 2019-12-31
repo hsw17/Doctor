@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.jpush.im.android.api.JMessageClient;
 
 public class InquiryActivity extends BaseActivity<Presenter> implements Contract.IView {
 
@@ -58,24 +59,21 @@ public class InquiryActivity extends BaseActivity<Presenter> implements Contract
     @Override
     public void onSuccess(Object obj) {
         FindInquiryRecordListBean findInquiryRecordListBean = (FindInquiryRecordListBean) obj;
-        Logger.e(TAG,findInquiryRecordListBean.getMessage());
+        Logger.e(TAG,findInquiryRecordListBean.getMessage()+"findInquiryRecordListBean");
         if (findInquiryRecordListBean.getResult().size()!=0) {
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
             recInquiryView.setLayoutManager(linearLayoutManager);
             List<FindInquiryRecordListBean.ResultBean> result = findInquiryRecordListBean.getResult();
             MyRecViewInquiryAdapter myRecViewInquiryAdapter = new MyRecViewInquiryAdapter(result, this);
             recInquiryView.setAdapter(myRecViewInquiryAdapter);
+            presenter.doFindInquiryRecordList(doctorId,sessionId);
             myRecViewInquiryAdapter.setClick(new MyRecViewInquiryAdapter.click() {
                 @Override
-                public void onStatus(int status) {
-
-                }
-
-                @Override
-                public void onRecordId(int RecordId, int userId) {
+                public void onRecordId(int RecordId, int userId,String name) {
                     Intent intent = new Intent(InquiryActivity.this, FindInquiryDetailsListActivity.class);
                     intent.putExtra("RecordId",RecordId);
                     intent.putExtra("userId",userId);
+                    intent.putExtra("name",name);
                     startActivity(intent);
                 }
             });
@@ -83,7 +81,6 @@ public class InquiryActivity extends BaseActivity<Presenter> implements Contract
             imgInquiryView.setImageResource(R.mipmap.none_bg);
             tvNone.setText("嘤~空空如也");
         }
-
     }
 
     @Override

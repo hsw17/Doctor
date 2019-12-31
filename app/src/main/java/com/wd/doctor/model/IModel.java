@@ -9,6 +9,7 @@ import com.wd.doctor.bean.DrawCashBean;
 import com.wd.doctor.bean.FindDepartmentBean;
 import com.wd.doctor.bean.FindDoctorBankCardByIdBean;
 import com.wd.doctor.bean.FindDoctorByIdBean;
+import com.wd.doctor.bean.FindDoctorDrawRecordListBean;
 import com.wd.doctor.bean.FindDoctorIdCardInfoBean;
 import com.wd.doctor.bean.FindDoctorIncomeRecordListBean;
 import com.wd.doctor.bean.FindDoctorWalletBean;
@@ -476,6 +477,23 @@ public class IModel implements Contract.IModel {
                     @Override
                     public void onNext(FindDoctorIdCardInfoBean findDoctorIdCardInfoBean) {
                         iModelCallback.onSuccessTwo(findDoctorIdCardInfoBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iModelCallback.onFail(e.toString());
+                    }
+                });
+    }
+
+    @Override
+    public void doFindDoctorDrawRecordList(String doctorId, String sessionId, String page, String count, IModelCallback iModelCallback) {
+        HttpUtil.getInstance().getApiServer().doFindDoctorDrawRecordList(doctorId,sessionId,page,count)
+                .compose(CommonSchedulers.io2main())
+                .subscribe(new CommonObserver<FindDoctorDrawRecordListBean>() {
+                    @Override
+                    public void onNext(FindDoctorDrawRecordListBean findDoctorDrawRecordListBean) {
+                        iModelCallback.onSuccess(findDoctorDrawRecordListBean);
                     }
 
                     @Override

@@ -10,6 +10,7 @@ import com.wd.doctor.bean.DrawCashBean;
 import com.wd.doctor.bean.FindDepartmentBean;
 import com.wd.doctor.bean.FindDoctorBankCardByIdBean;
 import com.wd.doctor.bean.FindDoctorByIdBean;
+import com.wd.doctor.bean.FindDoctorDrawRecordListBean;
 import com.wd.doctor.bean.FindDoctorIdCardInfoBean;
 import com.wd.doctor.bean.FindDoctorIncomeRecordListBean;
 import com.wd.doctor.bean.FindDoctorWalletBean;
@@ -108,4 +109,6 @@ public interface ApiServer {
     Observable<DrawCashBean> doDrawCash(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId,@Query("money") String money);
     @GET("doctor/verify/v1/findDoctorIdCardInfo")
     Observable<FindDoctorIdCardInfoBean> doFindDoctorIdCardInfo(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId);
+    @GET("doctor/verify/v1/findDoctorDrawRecordList")
+    Observable<FindDoctorDrawRecordListBean> doFindDoctorDrawRecordList(@Header("doctorId") String doctorId,@Header("sessionId") String sessionId,@Query("page") String page,@Query("count") String count);
 }

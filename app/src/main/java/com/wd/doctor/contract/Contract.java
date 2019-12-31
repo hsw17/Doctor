@@ -76,6 +76,8 @@ public interface Contract {
         void doDrawCash(String doctorId,String sessionId,String money);
         //查询医生身份证信息
         void doFindDoctorIdCardInfo(String doctorId,String sessionId);
+        //查询用户提现记录
+        void doFindDoctorDrawRecordList(String doctorId,String sessionId,String page,String count);
     }
 
     //M层
@@ -106,6 +108,7 @@ public interface Contract {
         void doFindDoctorIncomeRecordList(String doctorId,String sessionId,String page,String count,IModelCallback iModelCallback);
         void doDrawCash(String doctorId,String sessionId,String money,IModelCallback iModelCallback);
         void doFindDoctorIdCardInfo(String doctorId,String sessionId,IModelCallback iModelCallback);
+        void doFindDoctorDrawRecordList(String doctorId,String sessionId,String page,String count,IModelCallback iModelCallback);
         interface IModelCallback{
             void onSuccess(Object obj);
             void onSuccessOne(Object one);
